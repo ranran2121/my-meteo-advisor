@@ -10,7 +10,7 @@ const Single = () => {
       <div className="md:basis-1/4">
         <Sidebar setData={setData} />
       </div>
-      <div className="md:basis-3/4 h-full self-center border-4 border-yellow-500">
+      <div className="md:basis-3/4 h-full self-center">
         <DisplayContainer data={data} />
       </div>
     </div>

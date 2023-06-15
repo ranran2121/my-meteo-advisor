@@ -15,3 +15,7 @@ code {
 .active {
   @apply underline underline-offset-8;
 }
+
+.displayColEntry {
+  @apply pt-7 pb-4 h-20;
+}
