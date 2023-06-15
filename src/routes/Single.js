@@ -1,14 +1,17 @@
 import Sidebar from "../components/Sidebar";
-import Display from "../components/Display";
+import DisplayContainer from "../components/DisplayContainer";
+import { useState } from "react";
 
 const Single = () => {
+  const [data, setData] = useState(null);
+
   return (
-    <div className="flex flex-col md:flex md:flex-row h-screen border-4 border-green-600">
-      <div className="basis-1/3 border2 border-green-600">
-        <Sidebar />
+    <div className="flex flex-col md:flex md:flex-row h-screen ">
+      <div className="md:basis-1/4">
+        <Sidebar setData={setData} />
       </div>
-      <div className="basis-2/3 border-4 border-yellow-600 self-center">
-        <Display />
+      <div className="md:basis-3/4 h-full self-center border-4 border-yellow-500">
+        <DisplayContainer data={data} />
       </div>
     </div>
   );
