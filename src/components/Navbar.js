@@ -6,12 +6,12 @@ function Navbar() {
       <ul className="ml-4 text-lg md:text-2xl lg:text-3xl font-semibold flex flex-row justify-around text-white">
         <li>
           <NavLink
-            to={"/"}
+            to={"/single"}
             className={({ isActive, isPending }) =>
               isActive ? "active" : isPending ? "pending" : ""
             }
           >
-            Home
+            Single
           </NavLink>
         </li>
         <li>

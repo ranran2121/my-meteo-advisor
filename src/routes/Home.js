@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="">
       <Header />
-      <div id="outlet" className="self-center mt-4">
+      <div id="outlet" className="self-center">
         {/* {envStatus === "loading" ? <div>Loading...</div> : baseUrl} */}
         <Outlet />
       </div>

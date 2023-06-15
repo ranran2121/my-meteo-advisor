@@ -3,6 +3,7 @@ import ErrorPage from "./error-page";
 import Home from "./routes/Home";
 import Compare from "./routes/Compare";
 import FarAndBeyond from "./routes/FarAndBeyond";
+import Single from "./routes/Single";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
     element: <Home />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "single",
+        element: <Single />,
+      },
       {
         path: "compare",
         element: <Compare />,
