@@ -4,19 +4,24 @@ import Home from "./routes/Home";
 import Compare from "./routes/Compare";
 import FarAndBeyond from "./routes/FarAndBeyond";
 import Single from "./routes/Single";
+import Root from "./routes/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "single",
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "single-location",
         element: <Single />,
       },
       {
-        path: "compare",
+        path: "compare-locations",
         element: <Compare />,
       },
       {

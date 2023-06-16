@@ -3,20 +3,20 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="w-full">
-      <ul className="ml-4 text-lg md:text-2xl lg:text-3xl font-semibold flex flex-row justify-around text-white">
+      <ul className="md:ml-4 text-md md:text-2xl lg:text-3xl font-semibold flex flex-row justify-around text-white">
         <li>
           <NavLink
-            to={"/single"}
+            to={"/single-location"}
             className={({ isActive, isPending }) =>
               isActive ? "active" : isPending ? "pending" : ""
             }
           >
-            Single
+            One and only
           </NavLink>
         </li>
         <li>
           <NavLink
-            to={"/compare"}
+            to={"/compare-locations"}
             className={({ isActive, isPending }) =>
               isActive ? "active" : isPending ? "pending" : ""
             }
