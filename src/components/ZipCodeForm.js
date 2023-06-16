@@ -2,47 +2,62 @@ import { useState } from "react";
 import { WEATHER_API_BASEURL } from "../constants";
 import axios from "axios";
 
-const LocationForm = ({ setData }) => {
+const LocationForm = ({ setData, setError }) => {
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
-  const [error, setError] = useState(null);
+  const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
+
+  const resetFields = () => {
+    setCountryCode("");
+    setZipCode("");
+  };
+
+  const isValidForm = () => {
+    return !invalidInput.zip && !invalidInput.country;
+  };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
+    if (!isValidForm()) {
+      return;
+    }
 
     if (!zipCode && !countryCode) {
-      setError({
+      setInvalidInput({
         zip: "zip code is required",
         country: "zip code is required",
       });
-
       return;
     }
     if (!zipCode) {
-      setError({
+      setInvalidInput({
         zip: "zip code is required",
       });
       return;
     }
 
     if (!countryCode) {
-      setError({
+      setInvalidInput({
         country: "zip code is required",
       });
       return;
     }
 
     try {
-      const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zipCode},${countryCode}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+      //call openeathermap geolocation api to retrieve lat&lon coordinates
+      const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zipCode},${countryCode.toUpperCase()}&limit=5&appid=${
+        process.env.REACT_APP_WEATHER_API_KEY
+      }`;
       const city = await axios.get(URL);
+      //use the lat&lon to retrieve forecast
       const { lat, lon } = city.data;
       const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const forecast = await axios.get(URL2);
-      setData(forecast.data);
 
-      console.log("RESP", forecast.data);
+      setData(forecast.data);
     } catch (e) {
-      console.log("ERROREEEE", e);
+      setError(true);
     }
   };
 
@@ -65,9 +80,21 @@ const LocationForm = ({ setData }) => {
           placeholder="Search"
           type="search"
           value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
+          onChange={(e) => {
+            setError(false);
+            let invalid = { ...invalidInput, zip: "" };
+            setInvalidInput(invalid);
+            const reg = /^\d+$/;
+            if (!reg.test(e.target.value)) {
+              invalid = { ...invalidInput, zip: "invalid input" };
+              setInvalidInput(invalid);
+            }
+            setZipCode(e.target.value);
+          }}
         />
-        {error?.zip && <span>{error.zip}</span>}
+        {invalidInput.zip && (
+          <span className="input-error">{invalidInput.zip}</span>
+        )}
       </div>
       <div className="flex flex-col">
         <label
@@ -77,15 +104,26 @@ const LocationForm = ({ setData }) => {
           CountryCode
         </label>
         <input
-          className="px-4 py-2 rounded-full"
+          className="px-4 py-2 rounded-full uppercase"
           id="search-countryCode"
           aria-label="Search countryCode"
           placeholder="e.g. IT"
           type="search"
           value={countryCode}
-          onChange={(e) => setCountryCode(e.target.value)}
+          onChange={(e) => {
+            setError(false);
+            let invalid = { ...invalidInput, country: "" };
+            setInvalidInput(invalid);
+            if (e.target.value.length > 2 || e.target.value.length < 2) {
+              invalid = { ...invalidInput, country: "invalid input" };
+              setInvalidInput(invalid);
+            }
+            setCountryCode(e.target.value);
+          }}
         />
-        {error?.country && <span>{error.country}</span>}
+        {invalidInput.country && (
+          <span className="input-error">{invalidInput.country}</span>
+        )}
       </div>
       <button
         type="submit"

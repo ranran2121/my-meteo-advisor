@@ -19,3 +19,7 @@ code {
 .displayColEntry {
   @apply pt-7 pb-4 h-20;
 }
+
+.input-error {
+  @apply text-red-500 text-sm;
+}

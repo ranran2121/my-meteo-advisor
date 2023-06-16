@@ -2,14 +2,14 @@ import { useState } from "react";
 import { WEATHER_API_BASEURL } from "../constants";
 import axios from "axios";
 
-const LocationForm = ({ setData }) => {
+const LocationForm = ({ setData, setError }) => {
   const [location, setLocation] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     if (!location) {
-      setIsError(true);
+      setIsValid(true);
       return;
     }
 
@@ -22,9 +22,8 @@ const LocationForm = ({ setData }) => {
       const forecast = await axios.get(URL2);
 
       setData(forecast.data);
-      console.log("RESP", forecast.data);
     } catch (e) {
-      console.log("ERROREEEE", e);
+      setError(true);
     }
   };
 
@@ -48,15 +47,13 @@ const LocationForm = ({ setData }) => {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
+      {isValid && <span className="input-error">Location is required</span>}
       <button
         type="submit"
         className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-blue-400"
       >
         search
       </button>
-      {isError && (
-        <span className="text-white"> You must insert a location</span>
-      )}
     </form>
   );
 };
