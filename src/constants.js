@@ -1,4 +1,5 @@
 export const WEATHER_API_BASEURL = "http://api.openweathermap.org";
+export const NASA_API_BASEURL = "https://api.nasa.gov";
 
 export const d = {
   cod: "200",

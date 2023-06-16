@@ -12,7 +12,7 @@ const Compare = () => {
         <SidebarCompar setData={setData} setError={setError} />
       </div>
       <div className="md:basis-3/4 h-full self-center">
-        <DisplayContainer data={data} error={error} />
+        <DisplayContainer data={data} error={error} page="compare" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import LegendColumn from "./LegendColumn";
-import DataColumn from "./DataColumn";
+import LegendColumn from "../LegendColumn";
+import DataColumn from "../DataColumn";
 
 const Display = ({ data }) => {
   return (

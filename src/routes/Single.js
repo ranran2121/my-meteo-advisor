@@ -12,7 +12,7 @@ const Single = () => {
         <Sidebar setData={setData} setError={setError} />
       </div>
       <div className="md:basis-3/4 h-full self-center">
-        <DisplayContainer data={data} error={error} isSingle={true} />
+        <DisplayContainer data={data} error={error} page="single" />
       </div>
     </div>
   );
