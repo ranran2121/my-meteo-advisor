@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { WEATHER_API_BASEURL } from "../constants";
+import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 
 const LocationForm = ({ setData, setError }) => {
