@@ -1,17 +1,79 @@
 import "../input.css";
 import "../auroral.css";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import { Link } from "react-router-dom";
-import ksun from "../assets/ksun.png";
-import kcloud from "../assets/kcloud.png";
-import kwind from "../assets/kwind.png";
+import { HOMEPAGELIST } from "../constants";
+import Cloud from "../components/Cloud";
 
 const Home = () => {
   return (
-    <div class="container">
-      <div class="auroral-northern"></div>
+    <div className="container">
+      <div className="auroral-northern"></div>
       <div className="absolute p-4 md:px-24 flex flex-col w-full h-full">
-        <h1 className="text-blue-600 text-center uppercase text-xl md:text-2xl mb-4">
+        <h1
+          className="text-emerald-300 text-center uppercase text-2xl md:text-3xl 
+       font-extrabold mb-4"
+        >
+          Welcome
+        </h1>
+        <h2 className="text-white text-xl md:text-2xl text-center">
+          Not the typical weather forecast website
+        </h2>
+        <h2 className="text-white text-xl md:text-2xl text-center">
+          Take time to explore and find ...
+        </h2>
+
+        {HOMEPAGELIST.map((element) => {
+          const { src, text, link, alt, left } = element;
+          return (
+            <Cloud
+              key={alt}
+              src={src}
+              alt={alt}
+              text={text}
+              link={link}
+              left={left}
+            />
+          );
+        })}
+
+        {/*  <Cloud
+          src={ksun}
+          alt="sunny"
+          text="... what the weather is like in your favourite location"
+          link="/single-location"
+          left={false}
+        />
+
+        <Cloud
+          src={kcloud}
+          alt="cloudy"
+          text="... where to find better weather if you you cannot make up between two locations"
+          link="/compare-locations"
+          left={true}
+        />
+
+        <Cloud
+          src={kwind}
+          alt="windy"
+          text="... how weather forecast pioneers into the space"
+          link="/far-and-beyond"
+          left={false}
+        /> */}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+
+/* const Home = () => {
+  return (
+    <div className="container">
+      <div className="auroral-northern"></div>
+      <div className="absolute p-4 md:px-24 flex flex-col w-full h-full">
+        <h1
+          className="text-emerald-300 text-center uppercase text-2xl md:text-3xl 
+       font-extrabold mb-4"
+        >
           Welcome
         </h1>
         <h2 className="text-white text-center">
@@ -21,8 +83,8 @@ const Home = () => {
           Take time to explore and find ...
         </h2>
 
-        <div className="flex flex-row mt-8 w-full">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center">
+        <div className="flex flex-row mt-7 w-full">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-emerald-400 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={ksun}
@@ -41,8 +103,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex flex-row mt-8 w-full justify-end">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center">
+        <div className="flex flex-row mt-7 w-full justify-end">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-emerald-400 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={kcloud}
@@ -62,8 +124,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex flex-row mt-8 w-full">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center">
+        <div className="flex flex-row mt-7 w-full">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-emerald-400 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={kwind}
@@ -84,6 +146,4 @@ const Home = () => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}; */

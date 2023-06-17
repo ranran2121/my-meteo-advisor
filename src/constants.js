@@ -1,5 +1,32 @@
+import ksun from "./assets/ksun.png";
+import kcloud from "./assets/kcloud.png";
+import kwind from "./assets/kwind.png";
+
 export const WEATHER_API_BASEURL = "http://api.openweathermap.org";
 export const NASA_API_BASEURL = "https://api.nasa.gov";
+export const HOMEPAGELIST = [
+  {
+    src: ksun,
+    alt: "sunny",
+    link: "/single-location",
+    left: false,
+    text: "... what the weather is like in your favourite location",
+  },
+  {
+    src: kcloud,
+    alt: "cloudy",
+    link: "/compare-locations",
+    left: true,
+    text: "... where to find better weather if you you cannot make up between two locations",
+  },
+  {
+    src: kwind,
+    alt: "windy",
+    link: "/far-and-beyond",
+    left: false,
+    text: "... how weather forecast pioneers into the space",
+  },
+];
 
 export const d = {
   cod: "200",
