@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const LocationForm = ({ setData, setError }) => {
   const [location, setLocation] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const [isInvalidInput, setIsInvalidInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     if (!location) {
-      setIsValid(true);
+      setIsInvalidInput(true);
       return;
     }
 
@@ -24,6 +28,8 @@ const LocationForm = ({ setData, setError }) => {
       setData(forecast.data);
     } catch (e) {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,12 +53,18 @@ const LocationForm = ({ setData, setError }) => {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      {isValid && <span className="input-error">Location is required</span>}
+      {isInvalidInput && (
+        <span className="input-error">Location is required</span>
+      )}
       <button
         type="submit"
         className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-blue-400"
       >
-        search
+        {!isLoading ? (
+          "search"
+        ) : (
+          <BeatLoader color="#fff" speedMultiplier={1} />
+        )}
       </button>
     </form>
   );

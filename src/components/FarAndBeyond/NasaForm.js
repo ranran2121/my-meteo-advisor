@@ -1,11 +1,16 @@
+import { useState } from "react";
 import axios from "axios";
 import { NASA_API_BASEURL } from "../../constants";
 import { format } from "date-fns";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const NasaForm = ({ setData, setError }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleOnClick = async () => {
     setError(false);
     setData(null);
+    setIsLoading(true);
 
     try {
       const date = format(new Date(), "yyyy-MM-dd");
@@ -15,6 +20,8 @@ const NasaForm = ({ setData, setError }) => {
       setData(response.data);
     } catch (err) {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -31,7 +38,7 @@ const NasaForm = ({ setData, setError }) => {
         onClick={handleOnClick}
         className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-blue-400"
       >
-        enjoy
+        {!isLoading ? "enjoy" : <BeatLoader color="#fff" speedMultiplier={1} />}
       </button>
     </div>
   );

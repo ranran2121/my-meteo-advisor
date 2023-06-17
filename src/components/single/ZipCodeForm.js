@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const LocationForm = ({ setData, setError }) => {
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
-
-  const resetFields = () => {
-    setCountryCode("");
-    setZipCode("");
-  };
 
   const isValidForm = () => {
     return !invalidInput.zip && !invalidInput.country;
@@ -58,6 +55,8 @@ const LocationForm = ({ setData, setError }) => {
       setData(forecast.data);
     } catch (e) {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -129,7 +128,11 @@ const LocationForm = ({ setData, setError }) => {
         type="submit"
         className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-blue-400"
       >
-        search
+        {!isLoading ? (
+          "search"
+        ) : (
+          <BeatLoader color="#fff" speedMultiplier={1} />
+        )}
       </button>
     </form>
   );
