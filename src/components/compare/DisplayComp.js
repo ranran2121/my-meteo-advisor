@@ -23,19 +23,19 @@ const DisplayComp = ({ data }) => {
   return (
     <div className="text-center flex flex-col items-center">
       <div className="p4">
-        <h2 className="text-blue-900 text-2xl font-bold">
+        <h2 className="text-color1 text-2xl font-bold">
           This is the weather forecast for
         </h2>
-        <h1 className="mt-2 text-blue-500 font-extrabold text-3xl">
+        <h1 className="mt-2 text-color2 font-extrabold text-3xl">
           {forecast1.city.name}
         </h1>
-        <h2 className="text-blue-900 text-2xl font-bold mt-2">vs</h2>
-        <h1 className="mt-2 text-blue-500 font-extrabold text-3xl">
+        <h2 className="text-color1 text-2xl font-bold mt-2">vs</h2>
+        <h1 className="mt-2 text-color2 font-extrabold text-3xl">
           {forecast2.city.name}
         </h1>
       </div>
 
-      <div className="border-b-2 border-blue-900 w-[70%] my-4"></div>
+      <div className="border-b-2 border-color1 w-[70%] my-4"></div>
 
       <div className="mt-4">
         <div className="flex flex-row gap-1 lg:gap-2">
@@ -69,13 +69,13 @@ const DisplayComp = ({ data }) => {
         {!hasWinner ? (
           <button
             type="button"
-            className="bg-blue-900 rounded-full px-4 py-2 text-white uppercase"
+            className="bg-color1 rounded-full px-4 py-2 text-white uppercase"
             onClick={handleOnclick}
           >
             ...and the winner is?
           </button>
         ) : (
-          <div className="text-blue-900 uppercase font-extrabold border-4 border-blue-900 bg-yellow-400 px-4 py-2 rounded-full">
+          <div className="text-color1 uppercase font-extrabold border-4 border-color1 bg-color5 px-4 py-2 rounded-full">
             {hasWinner}
           </div>
         )}

@@ -58,7 +58,7 @@ const LocationForm = ({ setData, setError }) => {
       )}
       <button
         type="submit"
-        className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-blue-400"
+        className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
       >
         {!isLoading ? (
           "search"
