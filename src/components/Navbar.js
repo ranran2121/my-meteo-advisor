@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="w-full">
-      <ul className="md:ml-4 text-md md:text-2xl lg:text-3xl font-semibold flex flex-row justify-around text-white">
+      <ul className="md:ml-4 text-md md:text-2xl lg:text-3xl font-semibold flex flex-row justify-around text-color4">
         <li>
           <NavLink
             to={"/single-location"}

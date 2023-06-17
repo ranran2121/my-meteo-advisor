@@ -40,7 +40,7 @@ const DisplayComp = ({ data }) => {
       <div className="mt-4">
         <div className="flex flex-row gap-1 lg:gap-2">
           <div className="basis-1/3">
-            <div className="flex flex-col rounded-xl  px-1 md:px-3 border-2 border-white">
+            <div className="flex flex-col rounded-xl  px-1 md:px-3 border-2 border-color4">
               <div className="displayColEntry font-bold uppercase text-sm"></div>
             </div>
           </div>
@@ -69,7 +69,7 @@ const DisplayComp = ({ data }) => {
         {!hasWinner ? (
           <button
             type="button"
-            className="bg-color1 rounded-full px-4 py-2 text-white uppercase"
+            className="bg-color1 rounded-full px-4 py-2 text-color4 uppercase"
             onClick={handleOnclick}
           >
             ...and the winner is?

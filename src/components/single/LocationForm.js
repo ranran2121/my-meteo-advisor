@@ -39,7 +39,7 @@ const LocationForm = ({ setData, setError }) => {
       className="px-8 pt-2 md:pt-10 w-full flex flex-col justify-center"
     >
       <label
-        className="my-4 text-white font-semibold"
+        className="my-4 text-color4 font-semibold"
         htmlFor="search-location"
       >
         Location
@@ -58,7 +58,7 @@ const LocationForm = ({ setData, setError }) => {
       )}
       <button
         type="submit"
-        className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+        className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
       >
         {!isLoading ? (
           "search"

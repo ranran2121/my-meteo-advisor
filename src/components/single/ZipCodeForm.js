@@ -67,7 +67,7 @@ const LocationForm = ({ setData, setError }) => {
     >
       <div className="flex flex-col">
         <label
-          className="my-4 text-white font-semibold"
+          className="my-4 text-color4 font-semibold"
           htmlFor="search-zipCode"
         >
           ZipCode
@@ -97,7 +97,7 @@ const LocationForm = ({ setData, setError }) => {
       </div>
       <div className="flex flex-col">
         <label
-          className="my-4 text-white font-semibold"
+          className="my-4 text-color4 font-semibold"
           htmlFor="search-zipCode"
         >
           CountryCode
@@ -126,7 +126,7 @@ const LocationForm = ({ setData, setError }) => {
       </div>
       <button
         type="submit"
-        className="text-white font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+        className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
       >
         {!isLoading ? (
           "search"

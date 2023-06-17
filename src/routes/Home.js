@@ -14,10 +14,10 @@ const Home = () => {
         >
           Welcome
         </h1>
-        <h2 className="text-white text-xl md:text-2xl text-center">
+        <h2 className="text-color4 text-xl md:text-2xl text-center">
           Not the typical weather forecast website
         </h2>
-        <h2 className="text-white text-xl md:text-2xl text-center">
+        <h2 className="text-color4 text-xl md:text-2xl text-center">
           Take time to explore and find ...
         </h2>
 
@@ -76,15 +76,15 @@ export default Home;
         >
           Welcome
         </h1>
-        <h2 className="text-white text-center">
+        <h2 className="text-color4 text-center">
           This is not the typical weather forecast website
         </h2>
-        <h2 className="text-white text-center">
+        <h2 className="text-color4 text-center">
           Take time to explore and find ...
         </h2>
 
         <div className="flex flex-row mt-7 w-full">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-color4 flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={ksun}
@@ -104,7 +104,7 @@ export default Home;
         </div>
 
         <div className="flex flex-row mt-7 w-full justify-end">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-color4 flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={kcloud}
@@ -125,7 +125,7 @@ export default Home;
         </div>
 
         <div className="flex flex-row mt-7 w-full">
-          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-white flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
+          <div className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-color4 flex flex-row items-center border-2 border-color5 hover:border-dotted shadow-2xl">
             <div className="basis-1/3">
               <img
                 src={kwind}
