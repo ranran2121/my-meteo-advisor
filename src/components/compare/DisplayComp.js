@@ -2,10 +2,12 @@ import { useState } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
+import { findIndex } from "../../utils";
 
 const DisplayComp = ({ data }) => {
   const [hasWinner, setHasWinner] = useState("");
   const { forecast1, forecast2 } = data;
+  const i = findIndex();
 
   const handleOnclick = () => {
     var l1points = 0;
@@ -49,9 +51,7 @@ const DisplayComp = ({ data }) => {
         <div className="flex flex-row gap-1 lg:gap-2">
           <div className="basis-1/3">
             <div className="flex flex-col rounded-xl  px-1 md:px-3 border-2 border-white">
-              <div className="displayColEntry font-bold uppercase text-sm">
-                {" "}
-              </div>
+              <div className="displayColEntry font-bold uppercase text-sm"></div>
             </div>
           </div>
           <div className="basis-1/3">
@@ -67,10 +67,10 @@ const DisplayComp = ({ data }) => {
             <LegendColumn />
           </div>
           <div className="basis-1/3">
-            <DataColumn data={forecast1.list[5]} />
+            <DataColumn data={forecast1.list[i]} />
           </div>
           <div className="basis-1/3">
-            <DataColumn data={forecast2.list[5]} />
+            <DataColumn data={forecast2.list[i]} />
           </div>
         </div>
       </div>

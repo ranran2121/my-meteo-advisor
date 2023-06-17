@@ -1,8 +1,11 @@
 import React from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
+import { findIndex } from "../../utils";
 
 const Display = ({ data }) => {
+  const i = findIndex();
+
   return (
     <div className="text-center flex flex-col items-center">
       <div className="py-4 px-4">
@@ -21,13 +24,13 @@ const Display = ({ data }) => {
           <LegendColumn />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[5]} />
+          <DataColumn data={data.list[i]} />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[13]} />
+          <DataColumn data={data.list[i + 8]} />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[21]} />
+          <DataColumn data={data.list[i + 16]} />
         </div>
       </div>
     </div>

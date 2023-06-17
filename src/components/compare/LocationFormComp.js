@@ -51,7 +51,7 @@ const LocationFormComp = ({ setData, setError }) => {
         Location 1
       </label>
       <input
-        className="px-4 py-2 rounded-full"
+        className="px-4 py-2 rounded-full capitalize"
         id="search-location1"
         aria-label="Search location1"
         placeholder="Search"
@@ -69,7 +69,7 @@ const LocationFormComp = ({ setData, setError }) => {
         Location 2
       </label>
       <input
-        className="px-4 py-2 rounded-full"
+        className="px-4 py-2 rounded-full capitalize"
         id="search-location2"
         aria-label="Search location2"
         placeholder="Search"

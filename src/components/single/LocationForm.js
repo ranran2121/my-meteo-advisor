@@ -45,7 +45,7 @@ const LocationForm = ({ setData, setError }) => {
         Location
       </label>
       <input
-        className="px-4 py-2 rounded-full"
+        className="px-4 py-2 rounded-full capitalize"
         id="search-location"
         aria-label="Search location"
         placeholder="Search"
