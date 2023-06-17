@@ -10,24 +10,14 @@ const DisplayComp = ({ data }) => {
   const i = findIndex();
 
   const handleOnclick = () => {
-    var l1points = 0;
-    if (forecast1.list[5].clouds.all < forecast2.list[5].clouds.all) {
-      l1points++;
-    }
-    if (forecast1.list[5].main.feels_like < forecast2.list[5].main.feels_like) {
-      l1points++;
-    }
-    if (forecast1.list[5].main.humidity < forecast2.list[5].main.humidity) {
-      l1points++;
-    }
-    if (forecast1.list[5].wind.speed < forecast2.list[5].wind.speed) {
-      l1points++;
-    }
+    const l1points = givePoints(forecast1.list[i]);
+    const l2points = givePoints(forecast2.list[i]);
 
-    if (l1points >= 2) {
+    if (l1points >= l2points) {
       setHasWinner(forecast1.city.name);
+    } else {
+      setHasWinner(forecast2.city.name);
     }
-    setHasWinner(forecast2.city.name);
   };
 
   return (
@@ -95,3 +85,15 @@ const DisplayComp = ({ data }) => {
 };
 
 export default DisplayComp;
+
+function givePoints(l) {
+  const { clouds, main, wind } = l;
+  const pointsHum = 100 - main.humidity;
+  const pointsWind = 200 - wind.speed;
+  const pointsClouds = 100 - clouds.all;
+  let pointsFeel = main.feels_like;
+  if (main.feels_like >= 30) {
+    pointsFeel = 100 - main.feels_like;
+  }
+  return pointsHum + pointsWind + pointsClouds + pointsFeel;
+}
