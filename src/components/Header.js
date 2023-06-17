@@ -10,7 +10,7 @@ const Header = () => {
           <img alt="header" src={headerImage} width={300} height={300} />
         </NavLink>
       </div>
-      <div className="py-5 md:py-0 md:basis-3/4 flex items-center bg-color1">
+      <div className="py-5 md:py-0 md:basis-3/4 flex items-center bg-color1 md:rounded-bl-lg">
         <Navbar />
       </div>
     </div>
