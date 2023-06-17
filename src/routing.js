@@ -3,7 +3,7 @@ import ErrorPage from "./error-page";
 import Home from "./routes/Home";
 import Compare from "./routes/Compare";
 import FarAndBeyond from "./routes/FarAndBeyond";
-import Single from "./routes/Single";
+import SingleLocation from "./routes/SingleLocation";
 import Root from "./routes/Root";
 
 const router = createBrowserRouter([
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "single-location",
-        element: <Single />,
+        element: <SingleLocation />,
       },
       {
         path: "compare-locations",

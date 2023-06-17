@@ -2,7 +2,7 @@ import Sidebar from "../components/single/Sidebar";
 import DisplayContainer from "../components/DisplayContainer";
 import { useState } from "react";
 
-const Single = () => {
+const SingleLocation = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
 
@@ -18,4 +18,4 @@ const Single = () => {
   );
 };
 
-export default Single;
+export default SingleLocation;

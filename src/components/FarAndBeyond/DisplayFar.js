@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 
 const DisplayFar = ({ data }) => {
-  const { title, url, explanation, copyright, date } = data;
+  const { title, url, explanation, copyright, date, media_type } = data;
 
   return (
     <div className="text-center flex flex-col items-center">
@@ -13,8 +13,19 @@ const DisplayFar = ({ data }) => {
       </div>
 
       <div className="px-2 md:px-0">
-        <img src={url} alt={title} />
-        <figcaption className="italic">©{copyright}</figcaption>
+        {media_type === "image" ? (
+          <>
+            <img src={url} alt={title} />
+            <figcaption className="italic">©{copyright}</figcaption>
+          </>
+        ) : (
+          <iframe
+            title={title}
+            src={`${url}?autoplay=1&mute=1`}
+            width="300"
+            height="300"
+          ></iframe>
+        )}
       </div>
 
       <div className="mt-6 px-2">
