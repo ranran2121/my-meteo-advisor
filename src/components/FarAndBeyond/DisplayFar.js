@@ -1,7 +1,11 @@
 import { format } from "date-fns";
 
 const DisplayFar = ({ data }) => {
-  const { title, url, explanation, copyright, date, media_type } = data;
+  const { title, url, explanation, copyright, date, media_type } = data.data;
+
+  if (data.from === "mars") {
+    return <></>;
+  }
 
   return (
     <div className="text-center flex flex-col items-center">

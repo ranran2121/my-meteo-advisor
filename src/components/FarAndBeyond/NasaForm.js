@@ -17,7 +17,7 @@ const NasaForm = ({ setData, setError }) => {
       const URL = `${NASA_API_BASEURL}/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${date}&hd=true`;
       const response = await axios.get(URL);
 
-      setData(response.data);
+      setData({ data: response.data, from: "beyond" });
     } catch (err) {
       setError(true);
     } finally {

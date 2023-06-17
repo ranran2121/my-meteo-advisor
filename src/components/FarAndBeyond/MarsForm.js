@@ -16,7 +16,7 @@ const MarsForm = ({ setData, setError }) => {
       const response = await axios.get(URL);
 
       if (response.data.sol_keys.length > 0) {
-        setData(response.data);
+        setData({ data: response.data, from: "mars" });
       } else {
         setError(true);
       }
