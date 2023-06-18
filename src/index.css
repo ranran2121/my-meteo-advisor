@@ -23,3 +23,7 @@ code {
 .input-error {
   @apply text-red-500 text-sm;
 }
+
+.sidebar {
+  @apply h-full flex flex-col items-center relative;
+}
