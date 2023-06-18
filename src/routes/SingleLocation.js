@@ -7,7 +7,7 @@ const SingleLocation = () => {
   const [error, setError] = useState(false);
 
   return (
-    <div className="flex flex-col md:flex md:flex-row h-screen ">
+    <div className="flex flex-col md:flex-row md:h-screen ">
       <div className="md:basis-1/4">
         <Sidebar setData={setData} setError={setError} />
       </div>
