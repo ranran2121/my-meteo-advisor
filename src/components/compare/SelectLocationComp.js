@@ -42,55 +42,60 @@ const SelectLocationComp = ({ cities, setError, setData }) => {
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"
       >
-        <ul className="mt-4">
-          {cities1.map((city, index) => {
-            const { state, name } = city;
-            return (
-              <li key={state}>
-                <input
-                  type="radio"
-                  id={name + state}
-                  name={name + state}
-                  value={index}
-                  onChange={(e) => {
-                    setLocation1(cities1[e.target.value]);
-                  }}
-                />
-                <label htmlFor={name + state}>
-                  {name}, {state}
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-        {invalidInput.loc1 && (
-          <span className="input-error">{invalidInput.loc1}</span>
-        )}
-
-        <ul className="mt-4">
-          {cities2.map((city, index) => {
-            const { state, name } = city;
-            return (
-              <li key={state}>
-                <input
-                  type="radio"
-                  id={name + state}
-                  name={name + state}
-                  value={index}
-                  onChange={(e) => {
-                    setLocation2(cities2[e.target.value]);
-                  }}
-                />
-                <label htmlFor={name + state}>
-                  {name}, {state}
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-        {invalidInput.loc2 && (
-          <span className="input-error">{invalidInput.loc1}</span>
-        )}
+        <div className="mt-4  text-color3">
+          <h3 className="mt-4">Location1</h3>
+          <ul className="mt-2">
+            {cities1.map((city, index) => {
+              const { state, name } = city;
+              return (
+                <li key={state}>
+                  <input
+                    type="radio"
+                    id={name + state}
+                    name={name + state}
+                    value={index}
+                    onChange={(e) => {
+                      setLocation1(cities1[e.target.value]);
+                    }}
+                  />
+                  <label htmlFor={name + state} className="ml-2">
+                    {name}, {state}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+          {invalidInput.loc1 && (
+            <span className="input-error">{invalidInput.loc1}</span>
+          )}
+        </div>
+        <div className="mt-4  text-color5">
+          <h3 className="mt-4">Location2</h3>
+          <ul className="mt-2">
+            {cities2.map((city, index) => {
+              const { state, name } = city;
+              return (
+                <li key={state}>
+                  <input
+                    type="radio"
+                    id={name + state}
+                    name={name + state}
+                    value={index}
+                    onChange={(e) => {
+                      setLocation2(cities2[e.target.value]);
+                    }}
+                  />
+                  <label htmlFor={name + state} className="ml-2">
+                    {name}, {state}
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+          {invalidInput.loc2 && (
+            <span className="input-error">{invalidInput.loc1}</span>
+          )}
+        </div>
         <button
           type="submit"
           className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"

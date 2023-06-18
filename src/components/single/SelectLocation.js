@@ -50,7 +50,7 @@ const SelectLocation = ({ cities, setError, setData }) => {
                     setLocation(cities[e.target.value]);
                   }}
                 />
-                <label htmlFor={state}>
+                <label htmlFor={state} className="ml-2">
                   {name}, {state}
                 </label>
               </li>

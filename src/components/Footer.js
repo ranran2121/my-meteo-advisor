@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="h-10 bg-color1 text-color4 text-center">
       Do you like the website?
       <a
-        href="mailto:someone@example.com"
+        href="mailto:m.hacke@example.com"
         target="_blank"
         rel="noreferrer"
         className="text-color5 font-semibold underline ml-2"
