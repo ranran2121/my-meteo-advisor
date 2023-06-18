@@ -4,7 +4,7 @@ import NasaForm from "./NasaForm";
 
 const SidebarFar = ({ setData, setError }) => {
   return (
-    <div className="container md:rounded-tr-lg">
+    <div className="container h-screen md:rounded-tr-lg">
       <div className="auroral-northern "></div>
       <div className="sidebar pt-8">
         <MarsForm setData={setData} setError={setError} />

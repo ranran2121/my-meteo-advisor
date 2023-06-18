@@ -25,10 +25,7 @@
 }
 
 .container {
-  min-width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
+  @apply min-w-full relative overflow-hidden;
 }
 
 .auroral-northern {

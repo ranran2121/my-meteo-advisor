@@ -2,7 +2,7 @@ import { SunIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {
   return (
-    <div className="h-10 bg-color1 text-color4 text-center">
+    <footer className="h-10 bg-color1 text-color4 text-center">
       Do you like the website?
       <a
         href="mailto:someone@example.com"
@@ -13,7 +13,7 @@ const Footer = () => {
         Email me
         <SunIcon className="h-6 w-6 ml-2 inline text-color5 animate-pulse hover:scale-150" />
       </a>
-    </div>
+    </footer>
   );
 };
 
