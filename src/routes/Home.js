@@ -1,6 +1,6 @@
 import Cloud from "../components/Cloud";
 import "../input.css";
-import "../auroral.css";
+import "../style/auroral.css";
 import { HOMEPAGELIST } from "../constants";
 
 const Home = () => {

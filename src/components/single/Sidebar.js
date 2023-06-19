@@ -1,6 +1,6 @@
 import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
-import "./../../auroral.css";
+import "../../style/auroral.css";
 
 const Sidebar = () => {
   return (
