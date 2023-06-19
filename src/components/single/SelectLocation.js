@@ -46,7 +46,7 @@ const SelectLocation = ({ cities }) => {
                 <input
                   type="radio"
                   id={state}
-                  name={state}
+                  name={name}
                   value={index}
                   onChange={(e) => {
                     setLocation(cities[e.target.value]);

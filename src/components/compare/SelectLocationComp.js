@@ -54,7 +54,7 @@ const SelectLocationComp = ({ cities }) => {
                   <input
                     type="radio"
                     id={name + state}
-                    name={name + state}
+                    name={name}
                     value={index}
                     onChange={(e) => {
                       setLocation1(cities1[e.target.value]);
@@ -81,7 +81,7 @@ const SelectLocationComp = ({ cities }) => {
                   <input
                     type="radio"
                     id={name + state}
-                    name={name + state}
+                    name={name}
                     value={index}
                     onChange={(e) => {
                       setLocation2(cities2[e.target.value]);
