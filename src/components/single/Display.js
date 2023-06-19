@@ -1,9 +1,12 @@
-import React from "react";
+import { useContext } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
+import { SingleContext } from "../../routes/SingleLocation";
 
-const Display = ({ data }) => {
+const Display = () => {
+  const { data } = useContext(SingleContext);
+  console.log("DATA", data);
   const i = findIndex();
 
   return (

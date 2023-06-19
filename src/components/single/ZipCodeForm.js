@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SingleContext } from "../../routes/SingleLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const LocationForm = ({ setData, setError }) => {
+const LocationForm = () => {
+  const { setError, setData } = useContext(SingleContext);
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +18,8 @@ const LocationForm = ({ setData, setError }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+    setData(null);
+
     if (!isValidForm()) {
       return;
     }
@@ -54,6 +58,7 @@ const LocationForm = ({ setData, setError }) => {
 
       setData(forecast.data);
     } catch (e) {
+      console.log("EE");
       setError(true);
     } finally {
       setIsLoading(false);
