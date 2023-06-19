@@ -9,7 +9,7 @@ const SelectLocationComp = ({ cities }) => {
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const { setData, setError } = useContext(CompareContext);
+  const { setData, setError, data } = useContext(CompareContext);
   const { cities1, cities2 } = cities;
 
   const handleOnSubmitForm = async (e) => {
@@ -110,16 +110,26 @@ const SelectLocationComp = ({ cities }) => {
             <span className="input-error">{invalidInput.loc1}</span>
           )}
         </div>
-        <button
-          type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
-        >
-          {!isLoading ? (
-            "search"
-          ) : (
-            <BeatLoader color="#fff" speedMultiplier={1} />
-          )}
-        </button>
+        {!data && (
+          <button
+            type="submit"
+            className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+          >
+            {!isLoading ? (
+              "search"
+            ) : (
+              <BeatLoader color="#fff" speedMultiplier={1} />
+            )}
+          </button>
+        )}
+        {data && (
+          <a
+            href="/compare-locations"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+          >
+            new search
+          </a>
+        )}
       </form>
     </div>
   );
