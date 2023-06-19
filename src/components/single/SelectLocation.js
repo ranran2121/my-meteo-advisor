@@ -6,7 +6,7 @@ import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SelectLocation = ({ cities }) => {
-  const { setError, setData } = useContext(SingleContext);
+  const { setError, setData, data } = useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,16 +64,26 @@ const SelectLocation = ({ cities }) => {
         {isInvalidInput && (
           <span className="input-error">Location is required</span>
         )}
-        <button
-          type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
-        >
-          {!isLoading ? (
-            "search"
-          ) : (
-            <BeatLoader color="#fff" speedMultiplier={1} />
-          )}
-        </button>
+        {!data && (
+          <button
+            type="submit"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+          >
+            {!isLoading ? (
+              "search"
+            ) : (
+              <BeatLoader color="#fff" speedMultiplier={1} />
+            )}
+          </button>
+        )}
+        {data && (
+          <a
+            href="/single-location"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+          >
+            new search
+          </a>
+        )}
       </form>
     </div>
   );

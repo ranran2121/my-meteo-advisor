@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";

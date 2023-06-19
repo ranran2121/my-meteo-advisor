@@ -24,6 +24,10 @@ const SearchLocation = ({ setCities }) => {
       const URL = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const resp = await axios.get(URL);
 
+      if (resp.data.length === 0) {
+        throw new Error("error");
+      }
+
       const first = resp.data.shift();
       const cities = resp.data.filter((city) => {
         return city.state !== first.state;

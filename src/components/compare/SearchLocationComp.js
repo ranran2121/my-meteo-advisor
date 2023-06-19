@@ -25,6 +25,10 @@ const SearchLocationComp = ({ setCities }) => {
       const URL1 = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location1}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const resp1 = await axios.get(URL1);
 
+      if (resp1.data.length === 0) {
+        throw new Error("error");
+      }
+
       const first1 = resp1.data.shift();
       const cities1 = resp1.data.filter((city) => {
         return city.state !== first1.state;
@@ -34,11 +38,16 @@ const SearchLocationComp = ({ setCities }) => {
       const URL2 = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location2}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const resp2 = await axios.get(URL2);
 
+      if (resp2.data.length === 0) {
+        throw new Error("error");
+      }
+
       const first2 = resp2.data.shift();
       const cities2 = resp2.data.filter((city) => {
         return city.state !== first2.state;
       });
       cities2.unshift(first2);
+
       setCities({ cities1, cities2 });
     } catch (e) {
       setError(true);

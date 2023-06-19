@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
@@ -21,10 +21,7 @@ const Display = () => {
 
       <div className="border-b-2 border-color1 w-[70%] my-4 md:my-6"></div>
 
-      <div
-        id="display"
-        className="mt-6 md:mt-10 flex flex-row gap-1 lg:gap-2 px-1 md:px-0"
-      >
+      <div className="mt-6 md:mt-10 flex flex-row gap-1 lg:gap-2 px-1 md:px-0">
         <div className="basis-1/4">
           <LegendColumn />
         </div>

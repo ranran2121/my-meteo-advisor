@@ -45,6 +45,8 @@ const LocationForm = () => {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       //call openeathermap geolocation api to retrieve lat&lon coordinates
       const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zipCode},${countryCode.toUpperCase()}&limit=5&appid=${
