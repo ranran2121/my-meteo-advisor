@@ -18,9 +18,6 @@ const LocationForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setError(false);
-    if (!isValidForm()) {
-      return;
-    }
 
     if (!zipCode && !countryCode) {
       setInvalidInput({
@@ -35,6 +32,8 @@ const LocationForm = () => {
       });
       return;
     }
+
+    setIsLoading(true);
 
     if (!countryCode) {
       setInvalidInput({
@@ -75,7 +74,7 @@ const LocationForm = () => {
           ZipCode
         </label>
         <input
-          className="px-4 py-2 rounded-full"
+          className="px-4 py-2 rounded-full text-color1"
           id="search-zipCode"
           aria-label="Search zipCode"
           placeholder="Search"
@@ -105,7 +104,7 @@ const LocationForm = () => {
           CountryCode
         </label>
         <input
-          className="px-4 py-2 rounded-full uppercase"
+          className="px-4 py-2 rounded-full uppercase text-color1"
           id="search-countryCode"
           aria-label="Search countryCode"
           placeholder="e.g. IT"
