@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import Sidebar from "../components/single/Sidebar";
-import DisplayContainer from "../components/DisplayContainer";
+import Message from "../components/Message";
+import Display from "../components/single/Display";
+import Error from "../components/Error";
 
 export const SingleContext = createContext(null);
 
@@ -15,7 +17,9 @@ const SingleLocation = () => {
           <Sidebar />
         </div>
         <div className="md:basis-3/4 h-full self-center">
-          <DisplayContainer />
+          {!data && !error && <Message />}
+          {data && <Display data={data} />}
+          {error && <Error />}
         </div>
       </div>
     </SingleContext.Provider>

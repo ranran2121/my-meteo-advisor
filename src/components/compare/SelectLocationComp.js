@@ -1,23 +1,37 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CompareContext } from "../../routes/Compare";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const SelectLocationComp = ({ cities, setError, setData }) => {
+const SelectLocationComp = ({ cities }) => {
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const { setData, setError } = useContext(CompareContext);
   const { cities1, cities2 } = cities;
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (!location1 || !location2) {
-      setInvalidInput({ loc1: "input is required", loc2: "input is required" });
+      setInvalidInput({
+        loc1: "input is required",
+        loc2: "input is required",
+      });
       return;
     }
+    if (!location1) {
+      setInvalidInput({ loc1: "input is required" });
+      return;
+    }
+    if (!location2) {
+      setInvalidInput({ loc2: "input is required" });
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       const { lat, lon } = location1;

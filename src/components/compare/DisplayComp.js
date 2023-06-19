@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
+import { CompareContext } from "../../routes/Compare";
 import { findIndex } from "../../utils";
 
-const DisplayComp = ({ data }) => {
+const DisplayComp = () => {
   const [hasWinner, setHasWinner] = useState("");
+  const { data } = useContext(CompareContext);
   const { forecast1, forecast2 } = data;
   const i = findIndex();
 
