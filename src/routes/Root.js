@@ -1,5 +1,5 @@
-import "../input.css";
-import "../auroral.css";
+import "../style/index.css";
+import "../style/auroral.css";
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";

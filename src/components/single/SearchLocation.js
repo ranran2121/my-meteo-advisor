@@ -12,12 +12,13 @@ const SearchLocation = ({ setCities }) => {
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (!location) {
       setIsInvalidInput(true);
       return;
     }
+
+    setIsLoading(true);
 
     try {
       const URL = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
@@ -51,7 +52,7 @@ const SearchLocation = ({ setCities }) => {
           Location
         </label>
         <input
-          className="px-4 py-2 rounded-full capitalize"
+          className="px-4 py-2 rounded-full capitalize text-color1"
           id="search-location"
           aria-label="Search location"
           placeholder="Search"

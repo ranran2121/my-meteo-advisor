@@ -1,5 +1,5 @@
 import React from "react";
-import "./../../auroral.css";
+import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
 

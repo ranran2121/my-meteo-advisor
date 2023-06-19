@@ -5,7 +5,6 @@ import { format } from "date-fns";
 const DisplayFar = () => {
   const { data } = useContext(FarContext);
   const { title, url, explanation, copyright, date, media_type } = data.data;
-  console.log("FARA", data);
 
   if (data.from === "mars") {
     return <></>;

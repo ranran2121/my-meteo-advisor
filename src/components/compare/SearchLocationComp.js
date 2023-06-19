@@ -13,12 +13,13 @@ const SearchLocationComp = ({ setCities }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (!location1 || !location2) {
       setInvalidInput({ loc1: "input is required", loc2: "input is required" });
       return;
     }
+
+    setIsLoading(true);
 
     try {
       const URL1 = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location1}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
@@ -60,7 +61,7 @@ const SearchLocationComp = ({ setCities }) => {
           Location 1
         </label>
         <input
-          className="px-4 py-2 rounded-full capitalize"
+          className="px-4 py-2 rounded-full capitalize text-color1"
           id="search-location1"
           aria-label="Search location1"
           placeholder="Search"
@@ -78,7 +79,7 @@ const SearchLocationComp = ({ setCities }) => {
           Location 2
         </label>
         <input
-          className="px-4 py-2 rounded-full capitalize"
+          className="px-4 py-2 rounded-full capitalize  text-color1"
           id="search-location2"
           aria-label="Search location2"
           placeholder="Search"

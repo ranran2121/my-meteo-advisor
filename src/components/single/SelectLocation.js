@@ -13,11 +13,12 @@ const SelectLocation = ({ cities }) => {
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (!location) {
       setIsInvalidInput(true);
     }
+
+    setIsLoading(true);
 
     try {
       const { lat, lon } = location;

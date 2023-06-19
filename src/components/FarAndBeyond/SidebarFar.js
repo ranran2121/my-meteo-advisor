@@ -1,6 +1,7 @@
 import React from "react";
 import MarsForm from "./MarsForm";
 import NasaForm from "./NasaForm";
+import "../../style/auroral.css";
 
 const SidebarFar = () => {
   return (
