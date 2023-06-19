@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../routes/Root";
 import axios from "axios";
 import { NASA_API_BASEURL } from "../../constants";
 import { format } from "date-fns";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const NasaForm = ({ setData, setError }) => {
+const NasaForm = () => {
+  const { setError, setData } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnClick = async () => {

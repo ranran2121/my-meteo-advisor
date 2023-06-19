@@ -1,7 +1,7 @@
+import Cloud from "../components/Cloud";
 import "../input.css";
 import "../auroral.css";
 import { HOMEPAGELIST } from "../constants";
-import Cloud from "../components/Cloud";
 
 const Home = () => {
   return (

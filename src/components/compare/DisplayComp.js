@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../routes/Root";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
 import { findIndex } from "../../utils";
 
-const DisplayComp = ({ data }) => {
+const DisplayComp = () => {
+  const { data } = useContext(AppContext);
   const [hasWinner, setHasWinner] = useState("");
   const { forecast1, forecast2 } = data;
   const i = findIndex();

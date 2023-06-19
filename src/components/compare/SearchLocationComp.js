@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../routes/Root";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const SearchLocationComp = ({ setError, setCities }) => {
+const SearchLocationComp = ({ setCities }) => {
+  const { setError } = useContext(AppContext);
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });

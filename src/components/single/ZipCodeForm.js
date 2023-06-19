@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../routes/Root";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const LocationForm = ({ setData, setError }) => {
+const LocationForm = () => {
+  const { setError, setData } = useContext(AppContext);
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);

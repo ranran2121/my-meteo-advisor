@@ -1,9 +1,11 @@
-import React from "react";
+import { useContext } from "react";
+import { AppContext } from "../../routes/Root";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
 
-const Display = ({ data }) => {
+const Display = () => {
+  const { data } = useContext(AppContext);
   const i = findIndex();
 
   return (

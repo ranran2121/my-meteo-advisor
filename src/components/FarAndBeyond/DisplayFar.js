@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { AppContext } from "../../routes/Root";
 import { format } from "date-fns";
 
-const DisplayFar = ({ data }) => {
+const DisplayFar = () => {
+  const { data } = useContext(AppContext);
   const { title, url, explanation, copyright, date, media_type } = data.data;
 
   if (data.from === "mars") {

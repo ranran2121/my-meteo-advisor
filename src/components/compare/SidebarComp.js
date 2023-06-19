@@ -1,11 +1,11 @@
 import LocationFormComp from "./LocationFormComp";
 
-const SidebarComp = ({ setData, setError }) => {
+const SidebarComp = () => {
   return (
     <div className="container md:rounded-tr-lg h-screen">
       <div className="auroral-northern "></div>
       <div className="sidebar">
-        <LocationFormComp setData={setData} setError={setError} />
+        <LocationFormComp />
       </div>
     </div>
   );
