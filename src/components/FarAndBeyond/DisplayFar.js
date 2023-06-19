@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { FarContext } from "../../routes/FarAndBeyond";
 import { format } from "date-fns";
 
-const DisplayFar = ({ data }) => {
+const DisplayFar = () => {
+  const { data } = useContext(FarContext);
   const { title, url, explanation, copyright, date, media_type } = data.data;
+  console.log("FARA", data);
 
   if (data.from === "mars") {
     return <></>;
@@ -19,8 +23,10 @@ const DisplayFar = ({ data }) => {
       <div className="px-2 md:px-0">
         {media_type === "image" ? (
           <>
-            <img src={url} alt={title} />
-            <figcaption className="italic">©{copyright}</figcaption>
+            <img src={url} alt={title} width="500" />
+            {copyright && (
+              <figcaption className="italic">©{copyright}</figcaption>
+            )}
           </>
         ) : (
           <iframe

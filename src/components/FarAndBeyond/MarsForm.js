@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { FarContext } from "../../routes/FarAndBeyond";
 import axios from "axios";
 import { NASA_API_BASEURL } from "../../constants";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const MarsForm = ({ setData, setError }) => {
+const MarsForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { setData, setError } = useContext(FarContext);
 
   const handleOnClick = async () => {
     setError(false);

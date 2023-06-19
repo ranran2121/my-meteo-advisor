@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { FarContext } from "../../routes/FarAndBeyond";
 import axios from "axios";
 import { NASA_API_BASEURL } from "../../constants";
 import { format } from "date-fns";
 import BeatLoader from "react-spinners/BeatLoader";
 
-const NasaForm = ({ setData, setError }) => {
+const NasaForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { setData, setError } = useContext(FarContext);
 
   const handleOnClick = async () => {
     setError(false);
@@ -24,6 +26,7 @@ const NasaForm = ({ setData, setError }) => {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="px-8 pt-2 md:pt-8 w-full flex flex-col justify-center">
       <h3 className="text-color4 font-semibold text-2xl text-center">

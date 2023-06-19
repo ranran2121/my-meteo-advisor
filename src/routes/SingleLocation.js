@@ -18,7 +18,7 @@ const SingleLocation = () => {
         </div>
         <div className="md:basis-3/4 h-full self-center">
           {!data && !error && <Message />}
-          {data && <Display data={data} />}
+          {data && <Display />}
           {error && <Error />}
         </div>
       </div>

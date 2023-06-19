@@ -6,7 +6,6 @@ import { SingleContext } from "../../routes/SingleLocation";
 
 const Display = () => {
   const { data } = useContext(SingleContext);
-  console.log("DATA", data);
   const i = findIndex();
 
   return (
