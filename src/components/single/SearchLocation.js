@@ -48,6 +48,7 @@ const SearchLocation = ({ setCities }) => {
       <form
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"
+        role="search"
       >
         <label
           className="my-4 text-color4 font-semibold"
@@ -62,6 +63,7 @@ const SearchLocation = ({ setCities }) => {
           placeholder="Search"
           type="search"
           value={location}
+          name="q"
           onChange={(e) => setLocation(e.target.value)}
         />
         {isInvalidInput && (
