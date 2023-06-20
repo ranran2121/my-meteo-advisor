@@ -43,8 +43,8 @@ const SearchLocation = ({ setCities }) => {
   };
 
   return (
-    <div className="mt-4 text-color4">
-      <h2 className="text-xl font-semibold">Search by Location</h2>
+    <div className="mt-4 text-color4 w-full px-8">
+      <h2 className="text-xl font-semibold text-color5">Search by Location</h2>
       <form
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"
@@ -69,7 +69,7 @@ const SearchLocation = ({ setCities }) => {
         )}
         <button
           type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color5"
         >
           {!isLoading ? (
             "search"
