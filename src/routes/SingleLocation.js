@@ -1,8 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import Sidebar from "../components/single/Sidebar";
-import Message from "../components/Message";
-import Display from "../components/single/Display";
-import Error from "../components/Error";
 import { Outlet } from "react-router-dom";
 
 export const SingleContext = createContext(null);
