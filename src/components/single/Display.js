@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
