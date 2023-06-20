@@ -10,6 +10,7 @@ This app will allow you to
 ## First setup
 
 In the project directory
-1- run `nvm use`
-2- run `npm install` to install all the required packages
-3- run `npm start`
+
+1. run `nvm use`
+2. run `npm install` to install all the required packages
+3. run `npm start`
