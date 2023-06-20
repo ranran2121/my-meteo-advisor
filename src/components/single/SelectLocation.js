@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from "react-router-dom";
 
 const SelectLocation = ({ cities }) => {
-  const { setError, setData, data } = useContext(SingleContext);
+  const { data, isLoading, setIsLoading } = useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -18,19 +18,8 @@ const SelectLocation = ({ cities }) => {
     }
 
     setIsLoading(true);
-
-    try {
-      const { lat, lon } = location;
-      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast = await axios.get(URL2);
-
-      setData(forecast.data);
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
+    const { lat, lon } = location;
+    navigate(`/single-location/${lat}/${lon}`);
   };
 
   return (

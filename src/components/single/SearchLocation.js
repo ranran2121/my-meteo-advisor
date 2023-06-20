@@ -5,10 +5,10 @@ import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SearchLocation = ({ setCities }) => {
-  const { setError, setData } = useContext(SingleContext);
+  const { setError, setData, isLoading, setIsLoading } =
+    useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -45,7 +45,6 @@ const SearchLocation = ({ setCities }) => {
 
   return (
     <div className="mt-4 text-color4 w-full px-8">
-      <h2 className="text-xl font-semibold text-color5">Search by Location</h2>
       <form
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"

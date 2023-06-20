@@ -7,17 +7,15 @@ import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Error from "../Error";
-import Message from "../Message";
 
 const Display = () => {
   const { data, error, isLoading, setIsLoading, setData, setError } =
     useContext(SingleContext);
 
-  let { zip, country } = useParams();
+  let { zip, country, lat, lon } = useParams();
   const i = findIndex();
-  //setIsLoading(false);
 
-  const loaderSingle = async () => {
+  const loaderZip = async () => {
     try {
       //call openwathermap geolocation api to retrieve lat&lon coordinates
       const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zip},${country.toUpperCase()}&limit=5&appid=${
@@ -38,16 +36,30 @@ const Display = () => {
     }
   };
 
+  const loaderLoc = async () => {
+    try {
+      //call openwathermap geolocation api to retrieve lat&lon coordinates
+      const URL = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+      const forecast = await axios.get(URL);
+
+      setData(forecast.data);
+    } catch (e) {
+      setData(null);
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (zip && country) {
-      loaderSingle();
+      loaderZip();
+    }
+    if (lat && lon) {
+      loaderLoc();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zip, country, isLoading]);
-
-  if (!data && !error) {
-    return <Message />;
-  }
 
   if (error) {
     return <Error />;

@@ -22,6 +22,16 @@ const router = createBrowserRouter([
         element: <SingleLocation />,
         children: [
           {
+            path: ":lat/:lon",
+            element: <Display />,
+          },
+        ],
+      },
+      {
+        path: "single-location-by-zip",
+        element: <SingleLocation />,
+        children: [
+          {
             path: ":zip/:country",
             element: <Display />,
           },

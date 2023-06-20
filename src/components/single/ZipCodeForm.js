@@ -45,12 +45,11 @@ const LocationForm = () => {
     }
 
     setIsLoading(true);
-    navigate(`/single-location/${zipCode}/${countryCode}`);
+    navigate(`/single-location-by-zip/${zipCode}/${countryCode}`);
   };
 
   return (
     <div className="mt-4 text-color4 w-full px-8">
-      <h2 className="text-xl font-semibold text-color3">Search by Zip code</h2>
       <form
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col justify-center"
