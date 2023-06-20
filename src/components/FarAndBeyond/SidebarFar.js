@@ -5,7 +5,7 @@ import "../../style/auroral.css";
 
 const SidebarFar = () => {
   return (
-    <div className="container h-screen md:rounded-tr-lg">
+    <div className="container md:rounded-tr-lg md:h-screen">
       <div className="auroral-northern "></div>
       <div className="sidebar pt-8">
         <MarsForm />

@@ -5,7 +5,7 @@ import ZipCodeForm from "./ZipCodeForm";
 
 const Sidebar = () => {
   return (
-    <div className="container md:rounded-tr-lg h-screen">
+    <div className="container md:rounded-tr-lg md:h-screen">
       <div className="auroral-northern "></div>
       <div className="sidebar">
         <LocationForm />
