@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from "react-router-dom";
 
 const LocationForm = () => {
-  const { setError, setData } = useContext(SingleContext);
+  const { setError, setIsLoading, isLoading } = useContext(SingleContext);
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
+
+  const navigate = useNavigate();
 
   const isValidForm = () => {
     return !invalidInput.zip && !invalidInput.country;
@@ -45,25 +45,7 @@ const LocationForm = () => {
     }
 
     setIsLoading(true);
-
-    try {
-      //call openeathermap geolocation api to retrieve lat&lon coordinates
-      const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zipCode},${countryCode.toUpperCase()}&limit=5&appid=${
-        process.env.REACT_APP_WEATHER_API_KEY
-      }`;
-      const city = await axios.get(URL);
-      //use the lat&lon to retrieve forecast
-      const { lat, lon } = city.data;
-      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast = await axios.get(URL2);
-
-      setData(forecast.data);
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
+    navigate(`/single-location/${zipCode}/${countryCode}`);
   };
 
   return (
@@ -124,7 +106,7 @@ const LocationForm = () => {
                 invalid = { ...invalidInput, country: "invalid input" };
                 setInvalidInput(invalid);
               }
-              setCountryCode(e.target.value);
+              setCountryCode(e.target.value.toUpperCase());
             }}
           />
           {invalidInput.country && (

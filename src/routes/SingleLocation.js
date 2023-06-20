@@ -3,12 +3,14 @@ import Sidebar from "../components/single/Sidebar";
 import Message from "../components/Message";
 import Display from "../components/single/Display";
 import Error from "../components/Error";
+import { Outlet } from "react-router-dom";
 
 export const SingleContext = createContext(null);
 
 const SingleLocation = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (data || error) {
@@ -17,15 +19,18 @@ const SingleLocation = () => {
   }, [data, error]);
 
   return (
-    <SingleContext.Provider value={{ data, setData, error, setError }}>
+    <SingleContext.Provider
+      value={{ data, setData, error, setError, isLoading, setIsLoading }}
+    >
       <div className="flex flex-col md:flex-row md:h-screen ">
         <div className="md:basis-1/4">
           <Sidebar />
         </div>
         <div className="md:basis-3/4 h-full self-center" id="display">
-          {!data && !error && <Message />}
+          <Outlet />
+          {/* {!data && !error && <Message />}
           {data && <Display />}
-          {error && <Error />}
+          {error && <Error />} */}
         </div>
       </div>
     </SingleContext.Provider>
