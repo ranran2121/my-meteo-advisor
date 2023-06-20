@@ -26,6 +26,7 @@ const SelectLocation = ({ cities }) => {
 
       setData(forecast.data);
     } catch (e) {
+      setData(null);
       setError(true);
     } finally {
       setIsLoading(false);
@@ -86,7 +87,7 @@ const SelectLocation = ({ cities }) => {
         {data && (
           <a
             href="/single-location"
-            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
           >
             new search
           </a>

@@ -5,7 +5,7 @@ import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SearchLocation = ({ setCities }) => {
-  const { setError } = useContext(SingleContext);
+  const { setError, setData } = useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +38,7 @@ const SearchLocation = ({ setCities }) => {
     } catch (e) {
       setError(true);
     } finally {
+      setData(null);
       setIsLoading(false);
     }
   };

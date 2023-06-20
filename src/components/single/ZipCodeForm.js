@@ -18,7 +18,6 @@ const LocationForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setError(false);
-    setData(null);
 
     if (!isValidForm()) {
       return;
@@ -60,7 +59,7 @@ const LocationForm = () => {
 
       setData(forecast.data);
     } catch (e) {
-      console.log("EE");
+      setData(null);
       setError(true);
     } finally {
       setIsLoading(false);
@@ -69,9 +68,7 @@ const LocationForm = () => {
 
   return (
     <div className="mt-4 text-color4 w-full px-8">
-      <h2 className="text-xl font-semibold text-color3">
-        Search by Zip/Country code
-      </h2>
+      <h2 className="text-xl font-semibold text-color3">Search by Zip code</h2>
       <form
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col justify-center"
@@ -121,7 +118,6 @@ const LocationForm = () => {
             type="search"
             value={countryCode}
             onChange={(e) => {
-              setError(false);
               let invalid = { ...invalidInput, country: "" };
               setInvalidInput(invalid);
               if (e.target.value.length > 2 || e.target.value.length < 2) {
