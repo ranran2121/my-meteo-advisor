@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-
 import { SingleContext } from "../../routes/SingleLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
@@ -35,7 +34,7 @@ const SelectLocation = ({ cities }) => {
 
   return (
     <div className="mt-4 text-color4 px-8 w-full">
-      <h2 className="text-xl font-semibold">Refine your search</h2>
+      <h2 className="text-xl font-semibold text-color5">Refine your search</h2>
       <form
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"
@@ -65,16 +64,24 @@ const SelectLocation = ({ cities }) => {
           <span className="input-error">Location is required</span>
         )}
         {!data && (
-          <button
-            type="submit"
-            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
-          >
-            {!isLoading ? (
-              "search"
-            ) : (
-              <BeatLoader color="#fff" speedMultiplier={1} />
-            )}
-          </button>
+          <>
+            <button
+              type="submit"
+              className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
+            >
+              {!isLoading ? (
+                "search"
+              ) : (
+                <BeatLoader color="#fff" speedMultiplier={1} />
+              )}
+            </button>
+            <a
+              href="/single-location"
+              className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
+            >
+              back
+            </a>
+          </>
         )}
         {data && (
           <a
