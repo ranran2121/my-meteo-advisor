@@ -14,10 +14,10 @@ const SingleLocation = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (data || error) {
+    if (data || error || errorSearch) {
       document.getElementById("display").scrollIntoView({ behavior: "smooth" });
     }
-  }, [data, error]);
+  }, [data, error, errorSearch]);
 
   return (
     <SingleContext.Provider

@@ -18,7 +18,7 @@ const Compare = () => {
         .getElementById("comp-display")
         .scrollIntoView({ behavior: "smooth" });
     }
-  }, [data, error]);
+  }, [data, error, errorSearch]);
 
   return (
     <CompareContext.Provider
