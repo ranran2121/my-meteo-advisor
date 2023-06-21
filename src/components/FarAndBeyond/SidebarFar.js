@@ -7,7 +7,7 @@ import { FarContext } from "../../routes/FarAndBeyond";
 
 const SidebarFar = () => {
   const { setData, pathname } = useContext(FarContext);
-  const [isNasa, setIsNasa] = useState(false);
+  const [isNasa, setIsNasa] = useState(pathname === "/far-and-beyond-nasa");
   const navigate = useNavigate();
 
   useEffect(() => {

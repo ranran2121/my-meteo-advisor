@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const { setData, pathname } = useContext(SingleContext);
-  const [isZip, setIsZip] = useState(false);
+  const [isZip, setIsZip] = useState(pathname === "/single-location-by-zip");
   const navigate = useNavigate();
 
   useEffect(() => {
