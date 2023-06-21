@@ -1,32 +1,19 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
-import axios from "axios";
-import { NASA_API_BASEURL } from "../../constants";
+import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const MarsForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { setData, setError } = useContext(FarContext);
+  const { setData, setError, isLoading, setIsLoading } = useContext(FarContext);
+
+  const navigate = useNavigate();
 
   const handleOnClick = async () => {
     setError(false);
     setData(null);
     setIsLoading(true);
 
-    try {
-      const URL = `${NASA_API_BASEURL}/insight_weather/?api_key=${process.env.REACT_APP_NASA_API_KEY}&feedtype=json&ver=1.0`;
-      const response = await axios.get(URL);
-
-      if (response.data.sol_keys.length > 0) {
-        setData({ data: response.data, from: "mars" });
-      } else {
-        setError(true);
-      }
-    } catch (err) {
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
+    navigate(`/far-and-beyond/mars`);
   };
 
   return (

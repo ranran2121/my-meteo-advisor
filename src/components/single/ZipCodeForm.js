@@ -3,7 +3,7 @@ import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useNavigate } from "react-router-dom";
 
-const LocationForm = () => {
+const ZipCodeForm = () => {
   const { setError, setIsLoading, isLoading } = useContext(SingleContext);
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -127,4 +127,4 @@ const LocationForm = () => {
   );
 };
 
-export default LocationForm;
+export default ZipCodeForm;

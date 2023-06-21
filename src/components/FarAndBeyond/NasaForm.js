@@ -1,30 +1,20 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
-import axios from "axios";
-import { NASA_API_BASEURL } from "../../constants";
+import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const NasaForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { setData, setError } = useContext(FarContext);
+  const { setData, setError, isLoading, setIsLoading } = useContext(FarContext);
+
+  const navigate = useNavigate();
 
   const handleOnClick = async () => {
     setError(false);
     setData(null);
     setIsLoading(true);
-
-    try {
-      const date = format(new Date(), "yyyy-MM-dd");
-      const URL = `${NASA_API_BASEURL}/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${date}&hd=true`;
-      const response = await axios.get(URL);
-
-      setData({ data: response.data, from: "beyond" });
-    } catch (err) {
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
+    const date = format(new Date(), "yyyy-MM-dd");
+    navigate(`/far-and-beyond-nasa/${date}`);
   };
 
   return (
