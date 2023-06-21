@@ -37,7 +37,7 @@ const Compare = () => {
         setSearchParams,
       }}
     >
-      <div className="flex flex-col md:flex md:flex-row md:h-screen ">
+      <div className="flex flex-col md:flex md:flex-row lg:h-screen ">
         <div className="md:basis-1/4">
           <SidebarComp />
         </div>

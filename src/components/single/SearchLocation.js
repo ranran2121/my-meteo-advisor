@@ -44,7 +44,7 @@ const SearchLocation = ({ setCities }) => {
   };
 
   return (
-    <div className="mt-4 text-color4 w-full px-8">
+    <div className="my-4 text-color4 w-full px-8">
       <form
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"

@@ -39,7 +39,7 @@ const SelectLocationComp = ({ cities }) => {
   };
 
   return (
-    <div className="mt-4 text-color4 px-8 w-full">
+    <div className="my-4 text-color4 px-8 w-full">
       <h2 className="text-xl font-semibold">Refine your search</h2>
       <form
         onSubmit={handleOnSubmitForm}

@@ -67,7 +67,10 @@ const DisplayFar = () => {
   if (data && data.from === "beyond") {
     const { title, url, explanation, copyright, date, media_type } = data.data;
     return (
-      <div className="text-center flex flex-col items-center" id="display-far">
+      <div
+        className="text-center flex flex-col items-center mb-4"
+        id="display-far"
+      >
         <div className="py-4 px-4">
           <h2 className="text-color1 text-2xl font-bold">
             The picture of the day {format(new Date(date), "dd-MM-yyyy")}

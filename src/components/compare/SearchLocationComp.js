@@ -67,7 +67,7 @@ const SearchLocationComp = ({ setCities }) => {
   };
 
   return (
-    <div className="mt-4 text-color4">
+    <div className="my-4 text-color4">
       <h2 className="text-xl font-semibold px-8">Search by Location</h2>
       <form
         onSubmit={handleOnSubmit}

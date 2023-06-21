@@ -48,7 +48,7 @@ const ZipCodeForm = () => {
   };
 
   return (
-    <div className="mt-4 text-color4 w-full px-8">
+    <div className="my-4 text-color4 w-full px-8">
       <form
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col justify-center"

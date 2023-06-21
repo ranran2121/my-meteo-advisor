@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="auroral-northern"></div>
-      <div className="relative p-4 md:px-24 flex flex-col w-full h-full">
+      <div className="relative p-4 md:px-24 flex flex-col w-full ">
         <h1
           className="text-emerald-300 text-center uppercase text-2xl md:text-3xl 
        font-extrabold mb-4"

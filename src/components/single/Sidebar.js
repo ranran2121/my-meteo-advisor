@@ -22,7 +22,7 @@ const Sidebar = () => {
     <div className="container md:rounded-tr-lg h-auto md:h-full">
       <div className="auroral-northern "></div>
       <div className="sidebar">
-        <div className="w-full px-8 mt-6">
+        <div className="w-full px-8 my-6">
           <div className="flex flex-row my-2 justify-between">
             <label
               htmlFor="zip-code"
