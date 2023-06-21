@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const MarsForm = () => {
-  const { setData, setError, isLoading, setIsLoading } = useContext(FarContext);
+  const { setData, setError, isLoading, setIsLoading, setSearchParams } =
+    useContext(FarContext);
 
   const navigate = useNavigate();
 
@@ -13,7 +14,8 @@ const MarsForm = () => {
     setData(null);
     setIsLoading(true);
 
-    navigate(`/far-and-beyond/mars`);
+    //navigate(`/far-and-beyond?mars=1`);
+    setSearchParams({ mars: true });
   };
 
   return (

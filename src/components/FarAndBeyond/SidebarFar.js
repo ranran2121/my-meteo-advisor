@@ -1,23 +1,21 @@
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import MarsForm from "./MarsForm";
 import NasaForm from "./NasaForm";
 import "../../style/auroral.css";
 import { FarContext } from "../../routes/FarAndBeyond";
 
 const SidebarFar = () => {
-  const { setData, pathname } = useContext(FarContext);
-  const [isNasa, setIsNasa] = useState(pathname === "/far-and-beyond-nasa");
-  const navigate = useNavigate();
+  const { setData, searchParams } = useContext(FarContext);
+  const nasa = searchParams.get("day");
+  const [isNasa, setIsNasa] = useState(nasa ? true : false);
 
   useEffect(() => {
-    if (isNasa) {
-      navigate("/far-and-beyond-nasa");
+    if (nasa) {
+      setIsNasa(true);
     } else {
-      navigate("/far-and-beyond");
+      setIsNasa(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isNasa]);
+  }, [nasa, searchParams]);
 
   return (
     <div className="container md:rounded-tr-lg md:h-screen">
@@ -61,9 +59,7 @@ const SidebarFar = () => {
             />
           </div>
         </div>
-        {pathname.split("/")[1] === "far-and-beyond" && <MarsForm />}
-
-        {pathname.split("/")[1] === "far-and-beyond-nasa" && <NasaForm />}
+        {isNasa ? <NasaForm /> : <MarsForm />}
       </div>
     </div>
   );

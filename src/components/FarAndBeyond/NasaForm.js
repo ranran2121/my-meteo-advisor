@@ -1,20 +1,18 @@
 import { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
-import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const NasaForm = () => {
-  const { setData, setError, isLoading, setIsLoading } = useContext(FarContext);
-
-  const navigate = useNavigate();
+  const { setData, setError, isLoading, setIsLoading, setSearchParams } =
+    useContext(FarContext);
 
   const handleOnClick = async () => {
     setError(false);
     setData(null);
     setIsLoading(true);
     const date = format(new Date(), "yyyy-MM-dd");
-    navigate(`/far-and-beyond-nasa/${date}`);
+    setSearchParams({ day: date });
   };
 
   return (

@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { FarContext } from "../../routes/FarAndBeyond";
 import axios from "axios";
 import { NASA_API_BASEURL } from "../../constants";
@@ -7,9 +6,18 @@ import { format } from "date-fns";
 import Error from "../Error";
 
 const DisplayFar = () => {
-  const { data, error, isLoading, setIsLoading, setData, setError } =
-    useContext(FarContext);
-  let { mars, day } = useParams();
+  const {
+    data,
+    error,
+    isLoading,
+    setIsLoading,
+    setData,
+    setError,
+    searchParams,
+  } = useContext(FarContext);
+
+  const mars = searchParams.get("mars");
+  const day = searchParams.get("day");
 
   const loaderMars = async () => {
     try {
@@ -69,7 +77,7 @@ const DisplayFar = () => {
         <div className="px-2 md:px-0">
           {media_type === "image" ? (
             <>
-              <img src={url} alt={title} width="500" />
+              <img src={url} alt={title} width="300" />
               {copyright && (
                 <figcaption className="italic">©{copyright}</figcaption>
               )}

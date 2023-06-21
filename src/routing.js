@@ -7,7 +7,6 @@ import SingleLocation from "./routes/SingleLocation";
 import Root from "./routes/Root";
 import Display from "./components/single/Display";
 import DisplayComp from "./components/compare/DisplayComp";
-import DisplayFar from "./components/FarAndBeyond/DisplayFar";
 
 const router = createBrowserRouter([
   {
@@ -52,22 +51,6 @@ const router = createBrowserRouter([
       {
         path: "far-and-beyond",
         element: <FarAndBeyond />,
-        children: [
-          {
-            path: ":mars",
-            element: <DisplayFar />,
-          },
-        ],
-      },
-      {
-        path: "far-and-beyond-nasa",
-        element: <FarAndBeyond />,
-        children: [
-          {
-            path: ":day",
-            element: <DisplayFar />,
-          },
-        ],
       },
     ],
   },
