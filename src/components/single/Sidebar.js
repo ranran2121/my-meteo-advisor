@@ -3,21 +3,20 @@ import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
-import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const { setData, pathname } = useContext(SingleContext);
-  const [isZip, setIsZip] = useState(pathname === "/single-location-by-zip");
-  const navigate = useNavigate();
+  const { setData, searchParams } = useContext(SingleContext);
+  const zip = searchParams.get("zipCode");
+  const [isZip, setIsZip] = useState(zip ? true : false);
 
   useEffect(() => {
-    if (isZip) {
-      navigate("/single-location-by-zip");
+    if (zip) {
+      setIsZip(true);
     } else {
-      navigate("/single-location");
+      setIsZip(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isZip]);
+  }, [zip, searchParams]);
 
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">
@@ -64,9 +63,7 @@ const Sidebar = () => {
             />
           </div>
         </div>
-        {pathname.split("/")[1] === "single-location" && <LocationForm />}
-
-        {pathname.split("/")[1] === "single-location-by-zip" && <ZipCodeForm />}
+        {isZip ? <ZipCodeForm /> : <LocationForm />}
       </div>
     </div>
   );

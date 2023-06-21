@@ -5,14 +5,23 @@ import { useContext, useEffect } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import Error from "../Error";
 
 const Display = () => {
-  const { data, error, isLoading, setIsLoading, setData, setError } =
-    useContext(SingleContext);
+  const {
+    data,
+    error,
+    isLoading,
+    setIsLoading,
+    setData,
+    setError,
+    searchParams,
+  } = useContext(SingleContext);
 
-  let { zip, country, lat, lon } = useParams();
+  const zip = searchParams.get("zipCode");
+  const country = searchParams.get("countryCode");
+  const lat = searchParams.get("lat");
+  const lon = searchParams.get("lon");
   const i = findIndex();
 
   const loaderZip = async () => {

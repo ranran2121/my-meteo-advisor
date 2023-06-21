@@ -1,14 +1,12 @@
 import { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
-import { useNavigate } from "react-router-dom";
 
 const SelectLocation = ({ cities }) => {
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
-  const { data, isLoading, setIsLoading } = useContext(SingleContext);
-
-  const navigate = useNavigate();
+  const { data, isLoading, setIsLoading, setSearchParams } =
+    useContext(SingleContext);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -19,7 +17,10 @@ const SelectLocation = ({ cities }) => {
 
     setIsLoading(true);
     const { lat, lon } = location;
-    navigate(`/single-location/${lat}/${lon}`);
+    setSearchParams({
+      lat,
+      lon,
+    });
   };
 
   return (

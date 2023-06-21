@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SidebarComp from "../components/compare/SidebarComp";
 import Message from "../components/Message";
 import Error from "../components/Error";
@@ -13,7 +13,6 @@ const Compare = () => {
   const [errorSearch, setErrorSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const { pathname } = useLocation();
 
   useEffect(() => {
     if (data || error || errorSearch) {
@@ -34,12 +33,11 @@ const Compare = () => {
         setIsLoading,
         errorSearch,
         setErrorSearch,
-        pathname,
         searchParams,
         setSearchParams,
       }}
     >
-      <div className="flex flex-col md:flex md:flex-row lg:h-full ">
+      <div className="flex flex-col md:flex md:flex-row md:h-screen ">
         <div className="md:basis-1/4">
           <SidebarComp />
         </div>

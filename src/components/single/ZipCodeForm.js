@@ -1,15 +1,13 @@
 import { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
-import { useNavigate } from "react-router-dom";
 
 const ZipCodeForm = () => {
-  const { setError, setIsLoading, isLoading } = useContext(SingleContext);
+  const { setError, setIsLoading, isLoading, setSearchParams } =
+    useContext(SingleContext);
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
-
-  const navigate = useNavigate();
 
   const isValidForm = () => {
     return !invalidInput.zip && !invalidInput.country;
@@ -45,7 +43,8 @@ const ZipCodeForm = () => {
     }
 
     setIsLoading(true);
-    navigate(`/single-location-by-zip/${zipCode}/${countryCode}`);
+    setSearchParams({ zipCode, countryCode });
+    //navigate(`/single-location-by-zip/${zipCode}/${countryCode}`);
   };
 
   return (

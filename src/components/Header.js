@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="md:basis-1/4 ">
+      <div className="md:basis-1/4">
         <NavLink to="/">
           <img alt="header" src={headerImage} width={300} height={300} />
         </NavLink>

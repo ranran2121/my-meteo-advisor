@@ -5,7 +5,6 @@ import Compare from "./routes/Compare";
 import FarAndBeyond from "./routes/FarAndBeyond";
 import SingleLocation from "./routes/SingleLocation";
 import Root from "./routes/Root";
-import Display from "./components/single/Display";
 
 const router = createBrowserRouter([
   {
@@ -20,22 +19,6 @@ const router = createBrowserRouter([
       {
         path: "single-location",
         element: <SingleLocation />,
-        children: [
-          {
-            path: ":lat/:lon",
-            element: <Display />,
-          },
-        ],
-      },
-      {
-        path: "single-location-by-zip",
-        element: <SingleLocation />,
-        children: [
-          {
-            path: ":zip/:country",
-            element: <Display />,
-          },
-        ],
       },
       {
         path: "compare-locations",

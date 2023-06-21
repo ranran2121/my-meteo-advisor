@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SidebarFar from "../components/FarAndBeyond/SidebarFar";
 import Message from "../components/Message";
 import DisplayFar from "../components/FarAndBeyond/DisplayFar";
@@ -11,7 +11,6 @@ const FarAndBeyond = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const { pathname } = useLocation();
 
   useEffect(() => {
     if (data || error) {
@@ -30,7 +29,6 @@ const FarAndBeyond = () => {
         setError,
         isLoading,
         setIsLoading,
-        pathname,
         searchParams,
         setSearchParams,
       }}
