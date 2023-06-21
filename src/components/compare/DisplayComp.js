@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
@@ -11,10 +10,21 @@ import axios from "axios";
 
 const DisplayComp = () => {
   const [hasWinner, setHasWinner] = useState("");
-  const { data, error, isLoading, setIsLoading, setData, setError } =
-    useContext(CompareContext);
+  const {
+    data,
+    error,
+    isLoading,
+    setIsLoading,
+    setData,
+    setError,
+    searchParams,
+  } = useContext(CompareContext);
 
-  let { lat1, lon1, lat2, lon2 } = useParams();
+  const lat1 = searchParams.get("lat1");
+  const lon1 = searchParams.get("lon1");
+  const lat2 = searchParams.get("lat2");
+  const lon2 = searchParams.get("lon2");
+
   const i = findIndex();
 
   const handleOnclick = () => {
@@ -29,6 +39,10 @@ const DisplayComp = () => {
   };
 
   const loaderLoc = async () => {
+    if (!lat1 || !lat2 || !lon1 || !lon2) {
+      setIsLoading(false);
+      return;
+    }
     try {
       //call openwathermap geolocation api to retrieve lat&lon coordinates
       const URL1 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat1}&lon=${lon1}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;

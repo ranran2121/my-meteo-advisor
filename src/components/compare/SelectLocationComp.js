@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
-import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SelectLocationComp = ({ cities }) => {
@@ -8,9 +7,8 @@ const SelectLocationComp = ({ cities }) => {
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const { data, isLoading, setIsLoading } = useContext(CompareContext);
-
-  const navigate = useNavigate();
+  const { data, isLoading, setIsLoading, setSearchParams } =
+    useContext(CompareContext);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -32,10 +30,12 @@ const SelectLocationComp = ({ cities }) => {
     }
 
     setIsLoading(true);
-
-    navigate(
-      `/compare-locations/${location1.lat}/${location1.lon}/${location2.lat}/${location2.lon}`
-    );
+    setSearchParams({
+      lat1: location1.lat,
+      lon1: location1.lon,
+      lat2: location2.lat,
+      lon2: location2.lon,
+    });
   };
 
   return (

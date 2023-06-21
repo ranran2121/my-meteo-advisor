@@ -1,20 +1,16 @@
 import { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
-import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const MarsForm = () => {
   const { setData, setError, isLoading, setIsLoading, setSearchParams } =
     useContext(FarContext);
 
-  const navigate = useNavigate();
-
   const handleOnClick = async () => {
     setError(false);
     setData(null);
     setIsLoading(true);
 
-    //navigate(`/far-and-beyond?mars=1`);
     setSearchParams({ mars: true });
   };
 

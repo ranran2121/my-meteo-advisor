@@ -1,8 +1,9 @@
 import { createContext, useState, useEffect } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
 import SidebarComp from "../components/compare/SidebarComp";
 import Message from "../components/Message";
-import { Outlet } from "react-router-dom";
 import Error from "../components/Error";
+import DisplayComp from "../components/compare/DisplayComp";
 
 export const CompareContext = createContext(null);
 
@@ -11,6 +12,8 @@ const Compare = () => {
   const [error, setError] = useState(false);
   const [errorSearch, setErrorSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  let [searchParams, setSearchParams] = useSearchParams();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (data || error || errorSearch) {
@@ -31,6 +34,9 @@ const Compare = () => {
         setIsLoading,
         errorSearch,
         setErrorSearch,
+        pathname,
+        searchParams,
+        setSearchParams,
       }}
     >
       <div className="flex flex-col md:flex md:flex-row md:h-screen ">
@@ -40,7 +46,7 @@ const Compare = () => {
         <div className="md:basis-3/4 h-full self-center" id="comp-display">
           {!data && !error && !errorSearch && <Message />}
           {errorSearch && <Error />}
-          {!errorSearch && <Outlet />}
+          {!errorSearch && <DisplayComp />}
         </div>
       </div>
     </CompareContext.Provider>
