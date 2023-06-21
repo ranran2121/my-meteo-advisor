@@ -4,9 +4,9 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { useNavigate } from "react-router-dom";
 
 const SelectLocation = ({ cities }) => {
-  const { data, isLoading, setIsLoading } = useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
+  const { data, isLoading, setIsLoading } = useContext(SingleContext);
 
   const navigate = useNavigate();
 

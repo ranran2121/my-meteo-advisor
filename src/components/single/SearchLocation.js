@@ -5,10 +5,10 @@ import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SearchLocation = ({ setCities }) => {
-  const { setError, setData, isLoading, setIsLoading } =
-    useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
+  const { errorSearch, setErrorSearch, setData, isLoading, setIsLoading } =
+    useContext(SingleContext);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const SearchLocation = ({ setCities }) => {
 
       setCities(cities);
     } catch (e) {
-      setError(true);
+      setErrorSearch(true);
     } finally {
       setData(null);
       setIsLoading(false);
@@ -67,16 +67,26 @@ const SearchLocation = ({ setCities }) => {
         {isInvalidInput && (
           <span className="input-error">Location is required</span>
         )}
-        <button
-          type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color5"
-        >
-          {!isLoading ? (
-            "search"
-          ) : (
-            <BeatLoader color="#fff" speedMultiplier={1} />
-          )}
-        </button>
+        {!errorSearch && (
+          <button
+            type="submit"
+            className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color5"
+          >
+            {!isLoading ? (
+              "search"
+            ) : (
+              <BeatLoader color="#fff" speedMultiplier={1} />
+            )}
+          </button>
+        )}
+        {errorSearch && (
+          <a
+            href="/single-location"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+          >
+            New Search
+          </a>
+        )}
       </form>
     </div>
   );

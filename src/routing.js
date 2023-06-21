@@ -6,6 +6,7 @@ import FarAndBeyond from "./routes/FarAndBeyond";
 import SingleLocation from "./routes/SingleLocation";
 import Root from "./routes/Root";
 import Display from "./components/single/Display";
+import DisplayComp from "./components/compare/DisplayComp";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,12 @@ const router = createBrowserRouter([
       {
         path: "compare-locations",
         element: <Compare />,
+        children: [
+          {
+            path: ":lat1/:lon1/:lat2/:lon2",
+            element: <DisplayComp />,
+          },
+        ],
       },
       {
         path: "far-and-beyond",

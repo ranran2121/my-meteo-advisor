@@ -1,16 +1,16 @@
 import { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SelectLocationComp = ({ cities }) => {
+  const { cities1, cities2 } = cities;
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const { setData, setError, data } = useContext(CompareContext);
-  const { cities1, cities2 } = cities;
+  const { data, isLoading, setIsLoading } = useContext(CompareContext);
+
+  const navigate = useNavigate();
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -33,6 +33,10 @@ const SelectLocationComp = ({ cities }) => {
 
     setIsLoading(true);
 
+    navigate(
+      `/compare-locations/${location1.lat}/${location1.lon}/${location2.lat}/${location2.lon}`
+    );
+    /* 
     try {
       const { lat, lon } = location1;
       const URL1 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
@@ -46,7 +50,7 @@ const SelectLocationComp = ({ cities }) => {
       setError(true);
     } finally {
       setIsLoading(false);
-    }
+    } */
   };
 
   return (

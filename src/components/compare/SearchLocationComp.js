@@ -8,14 +8,24 @@ const SearchLocationComp = ({ setCities }) => {
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const { setError } = useContext(CompareContext);
+  const { errorSearch, setErrorSearch, isLoading, setIsLoading } =
+    useContext(CompareContext);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    if (!location1 || !location2) {
+    if (!location1 && !location2) {
       setInvalidInput({ loc1: "input is required", loc2: "input is required" });
+      return;
+    }
+
+    if (!location1) {
+      setInvalidInput({ loc1: "input is required" });
+      return;
+    }
+
+    if (!location2) {
+      setInvalidInput({ loc2: "input is required" });
       return;
     }
 
@@ -50,7 +60,7 @@ const SearchLocationComp = ({ setCities }) => {
 
       setCities({ cities1, cities2 });
     } catch (e) {
-      setError(true);
+      setErrorSearch(true);
     } finally {
       setIsLoading(false);
     }
@@ -100,16 +110,26 @@ const SearchLocationComp = ({ setCities }) => {
           <span className="input-error">{invalidInput.loc2}</span>
         )}
 
-        <button
-          type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
-        >
-          {!isLoading ? (
-            "search"
-          ) : (
-            <BeatLoader color="#fff" speedMultiplier={1} />
-          )}
-        </button>
+        {!errorSearch && (
+          <button
+            type="submit"
+            className="text-color4 font-semibold uppercase my-4 rounded-full text-center py-2 bg-color3"
+          >
+            {!isLoading ? (
+              "search"
+            ) : (
+              <BeatLoader color="#fff" speedMultiplier={1} />
+            )}
+          </button>
+        )}
+        {errorSearch && (
+          <a
+            href="/compare-locations"
+            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
+          >
+            New Search
+          </a>
+        )}
       </form>
     </div>
   );
