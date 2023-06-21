@@ -91,7 +91,7 @@ const DisplayFar = () => {
             ></iframe>
           )}
         </div>
-        <div className="mt-6 px-2">
+        <div className="mt-6 px-4 text-left">
           <p>{explanation}</p>
         </div>
       </div>

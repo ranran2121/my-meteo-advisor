@@ -39,11 +39,11 @@ const Compare = () => {
         setSearchParams,
       }}
     >
-      <div className="flex flex-col md:flex md:flex-row md:h-screen ">
+      <div className="flex flex-col md:flex md:flex-row lg:h-full ">
         <div className="md:basis-1/4">
           <SidebarComp />
         </div>
-        <div className="md:basis-3/4 h-full self-center" id="comp-display">
+        <div className="md:basis-3/4 h-full self-center mb-4" id="comp-display">
           {!data && !error && !errorSearch && <Message />}
           {errorSearch && <Error />}
           {!errorSearch && <DisplayComp />}
