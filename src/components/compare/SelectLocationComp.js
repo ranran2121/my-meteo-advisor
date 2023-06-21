@@ -36,21 +36,6 @@ const SelectLocationComp = ({ cities }) => {
     navigate(
       `/compare-locations/${location1.lat}/${location1.lon}/${location2.lat}/${location2.lon}`
     );
-    /* 
-    try {
-      const { lat, lon } = location1;
-      const URL1 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast1 = await axios.get(URL1);
-
-      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${location2.lat}&lon=${location2.lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast2 = await axios.get(URL2);
-
-      setData({ forecast1: forecast1.data, forecast2: forecast2.data });
-    } catch (e) {
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    } */
   };
 
   return (
