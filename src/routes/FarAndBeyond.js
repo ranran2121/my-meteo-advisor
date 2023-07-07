@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import SidebarFar from "../components/FarAndBeyond/SidebarFar";
 import Message from "../components/Message";
 import DisplayFar from "../components/FarAndBeyond/DisplayFar";
@@ -9,8 +8,6 @@ export const FarContext = createContext(null);
 const FarAndBeyond = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (data || error) {
@@ -27,10 +24,6 @@ const FarAndBeyond = () => {
         setData,
         error,
         setError,
-        isLoading,
-        setIsLoading,
-        searchParams,
-        setSearchParams,
       }}
     >
       <div className="flex flex-col md:flex md:flex-row md:h-screen ">

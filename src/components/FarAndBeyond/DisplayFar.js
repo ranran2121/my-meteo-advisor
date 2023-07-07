@@ -1,64 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
-import axios from "axios";
-import { NASA_API_BASEURL } from "../../constants";
 import { format } from "date-fns";
 import Error from "../Error";
 
 const DisplayFar = () => {
-  const {
-    data,
-    error,
-    isLoading,
-    setIsLoading,
-    setData,
-    setError,
-    searchParams,
-  } = useContext(FarContext);
-
-  const mars = searchParams.get("mars");
-  const day = searchParams.get("day");
-
-  const loaderMars = async () => {
-    try {
-      const URL = `${NASA_API_BASEURL}/insight_weather/?api_key=${process.env.REACT_APP_NASA_API_KEY}&feedtype=json&ver=1.0`;
-      const response = await axios.get(URL);
-
-      if (response.data.sol_keys.length > 0) {
-        setData({ data: response.data, from: "mars" });
-      } else {
-        setError(true);
-      }
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const loaderNasa = async () => {
-    try {
-      const URL = `${NASA_API_BASEURL}/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${day}&hd=true`;
-      const response = await axios.get(URL);
-      setData({ data: response.data, from: "beyond" });
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (mars) {
-      loaderMars();
-    }
-    if (day) {
-      loaderNasa();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mars, day, isLoading]);
+  const { data, error } = useContext(FarContext);
 
   if (error) {
     return <Error />;

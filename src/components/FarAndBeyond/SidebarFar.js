@@ -3,9 +3,12 @@ import MarsForm from "./MarsForm";
 import NasaForm from "./NasaForm";
 import "../../style/auroral.css";
 import { FarContext } from "../../routes/FarAndBeyond";
+import { useSearchParams } from "react-router-dom";
 
 const SidebarFar = () => {
-  const { setData, searchParams } = useContext(FarContext);
+  const { setData } = useContext(FarContext);
+  let [searchParams, setSearchParams] = useSearchParams();
+
   const nasa = searchParams.get("day");
   const [isNasa, setIsNasa] = useState(nasa ? true : false);
 
