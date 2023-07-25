@@ -1,36 +1,25 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import { CompareContext } from "../../routes/Compare";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const SearchLocationComp = ({ setCities }) => {
-  const [location1, setLocation1] = useState("");
-  const [location2, setLocation2] = useState("");
+  const {
+    errorSearch,
+    setErrorSearch,
+    isLoading,
+    setIsLoading,
+    setSearchParams,
+    searchParams,
+  } = useContext(CompareContext);
+  const loc1 = searchParams.get("loc1");
+  const loc2 = searchParams.get("loc2");
+  const [location1, setLocation1] = useState(loc1 ?? "");
+  const [location2, setLocation2] = useState(loc2 ?? "");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const { errorSearch, setErrorSearch, isLoading, setIsLoading } =
-    useContext(CompareContext);
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!location1 && !location2) {
-      setInvalidInput({ loc1: "input is required", loc2: "input is required" });
-      return;
-    }
-
-    if (!location1) {
-      setInvalidInput({ loc1: "input is required" });
-      return;
-    }
-
-    if (!location2) {
-      setInvalidInput({ loc2: "input is required" });
-      return;
-    }
-
-    setIsLoading(true);
-
+  const loaderCities = useCallback(async () => {
     try {
       const URL1 = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location1}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const resp1 = await axios.get(URL1);
@@ -64,7 +53,35 @@ const SearchLocationComp = ({ setCities }) => {
     } finally {
       setIsLoading(false);
     }
+  }, [location1, location2, setCities, setErrorSearch, setIsLoading]);
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!location1 && !location2) {
+      setInvalidInput({ loc1: "input is required", loc2: "input is required" });
+      return;
+    }
+
+    if (!location1) {
+      setInvalidInput({ loc1: "input is required" });
+      return;
+    }
+
+    if (!location2) {
+      setInvalidInput({ loc2: "input is required" });
+      return;
+    }
+
+    setIsLoading(true);
+    setSearchParams({ loc1: location1, loc2: location2 });
   };
+
+  useEffect(() => {
+    if (loc1 && loc2) {
+      loaderCities();
+    }
+  }, [loaderCities, loc1, loc2]);
 
   return (
     <div className="my-4 text-color4">
