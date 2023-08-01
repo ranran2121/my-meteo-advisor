@@ -11,6 +11,9 @@ module.exports = {
         color5: "#34d399",
         color6: "#facc15",
       },
+      backgroundImage: {
+        cloud: "url(./assets/cloud.jpg)",
+      },
     },
   },
   plugins: [],

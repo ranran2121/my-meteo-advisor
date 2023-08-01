@@ -5,7 +5,7 @@ const Cloud = ({ src, text, link, alt, left }) => {
   return (
     <div className={`flex flex-row mt-6 w-full ${left ? "justify-end" : ""}`}>
       <div
-        className="w-full md:basis-1/2 rounded-[60px] md:rounded-full h-40 md:h-60 p-18 bg-color4 flex flex-row items-center hover:border-2 hover:border-color5 hover:border-dotted 
+        className="p-18 cloud hover:border-2 hover:border-color5 hover:border-dotted 
      hover:scale-110 shadow-2xl"
       >
         <div className="basis-1/3">
