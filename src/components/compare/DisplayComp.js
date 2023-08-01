@@ -1,12 +1,10 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
 import { CompareContext } from "../../routes/Compare";
 import { findIndex } from "../../utils";
 import Error from "../Error";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 
 const DisplayComp = () => {
   const [hasWinner, setHasWinner] = useState("");

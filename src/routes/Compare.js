@@ -44,7 +44,7 @@ const Compare = () => {
         <div className="md:basis-3/4 h-full self-center mb-4" id="comp-display">
           {!data && !error && !errorSearch && <Message />}
           {errorSearch && <Error />}
-          {!errorSearch && <DisplayComp />}
+          {!errorSearch && data && <DisplayComp />}
         </div>
       </div>
     </CompareContext.Provider>
