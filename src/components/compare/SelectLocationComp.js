@@ -1,29 +1,14 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
-
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 
 const SelectLocationComp = ({ cities }) => {
   const { cities1, cities2 } = cities;
   const [location1, setLocation1] = useState("");
   const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const {
-    data,
-    isLoading,
-    setIsLoading,
-    setSearchParams,
-    error,
-    setData,
-    setError,
-    searchParams,
-  } = useContext(CompareContext);
-  const lat1 = searchParams.get("lat1");
-  const lon1 = searchParams.get("lon1");
-  const lat2 = searchParams.get("lat2");
-  const lon2 = searchParams.get("lon2");
+  const { data, isLoading, setIsLoading, setSearchParams } =
+    useContext(CompareContext);
 
   const handleOnSubmitForm = async (e) => {
     e.preventDefault();
@@ -52,35 +37,6 @@ const SelectLocationComp = ({ cities }) => {
       lon2: location2.lon,
     });
   };
-
-  const loaderLoc = async () => {
-    if (!lat1 || !lat2 || !lon1 || !lon2) {
-      setIsLoading(false);
-      return;
-    }
-    try {
-      //call openwathermap geolocation api to retrieve lat&lon coordinates
-      const URL1 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat1}&lon=${lon1}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast1 = await axios.get(URL1);
-
-      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat2}&lon=${lon2}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast2 = await axios.get(URL2);
-
-      setData({ forecast1: forecast1.data, forecast2: forecast2.data });
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (lat1 && lon1 && lat2 && lon2) {
-      loaderLoc();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lat1, lon1, lat2, lon2, isLoading]);
 
   return (
     <div className="my-4 text-color4 px-8 w-full">

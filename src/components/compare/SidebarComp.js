@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
 import SearchLocationComp from "./SearchLocationComp";
 import SelectLocationComp from "./SelectLocationComp";
+import { CompareContext } from "../../routes/Compare";
 
 const SidebarComp = () => {
-  const [cities, setCities] = useState(null);
+  const { cities, setCities } = useContext(CompareContext);
 
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">
