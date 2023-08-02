@@ -10,8 +10,10 @@ const SidebarComp = () => {
     <div className="container md:rounded-tr-lg h-auto md:h-full">
       <div className="auroral-northern "></div>
       <div className="sidebar">
-        {!cities && <SearchLocationComp setCities={setCities} />}
-        {cities && <SelectLocationComp cities={cities} />}
+        <div className="w-full">
+          {!cities && <SearchLocationComp setCities={setCities} />}
+          {cities && <SelectLocationComp cities={cities} />}
+        </div>
       </div>
     </div>
   );

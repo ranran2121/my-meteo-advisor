@@ -1,74 +1,13 @@
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 import Error from "../Error";
 
 const Display = () => {
-  const {
-    data,
-    error,
-    isLoading,
-    setIsLoading,
-    setData,
-    setError,
-    searchParams,
-  } = useContext(SingleContext);
-
-  const zip = searchParams.get("zipCode");
-  const country = searchParams.get("countryCode");
-  const lat = searchParams.get("lat");
-  const lon = searchParams.get("lon");
+  const { data, error } = useContext(SingleContext);
   const i = findIndex();
-
-  const loaderZip = async () => {
-    try {
-      //call openwathermap geolocation api to retrieve lat&lon coordinates
-      const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zip},${country.toUpperCase()}&limit=5&appid=${
-        process.env.REACT_APP_WEATHER_API_KEY
-      }`;
-      const city = await axios.get(URL);
-      //use the lat&lon to retrieve forecast
-      const { lat, lon } = city.data;
-      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast = await axios.get(URL2);
-
-      setData(forecast.data);
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const loaderLoc = async () => {
-    try {
-      //call openwathermap geolocation api to retrieve lat&lon coordinates
-      const URL = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const forecast = await axios.get(URL);
-
-      setData(forecast.data);
-    } catch (e) {
-      setData(null);
-      setError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (zip && country) {
-      loaderZip();
-    }
-    if (lat && lon) {
-      loaderLoc();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zip, country, isLoading]);
 
   if (error) {
     return <Error />;
