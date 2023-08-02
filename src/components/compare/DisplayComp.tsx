@@ -5,6 +5,7 @@ import SingleBlock from "../SingleBlock";
 import { CompareContext } from "../../routes/Compare";
 import { findIndex } from "../../utils";
 import Error from "../Error";
+import { ForecastListItemType } from "../../types/index";
 
 const DisplayComp = () => {
   const [hasWinner, setHasWinner] = useState("");
@@ -93,7 +94,7 @@ const DisplayComp = () => {
 
 export default DisplayComp;
 
-function givePoints(l: any) {
+function givePoints(l: ForecastListItemType) {
   const { clouds, main, wind } = l;
   const pointsHum = 100 - main.humidity;
   const pointsWind = 200 - wind.speed;

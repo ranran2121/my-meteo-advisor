@@ -4,15 +4,15 @@ import SelectLocationComp from "./SelectLocationComp";
 import { CompareContext } from "../../routes/Compare";
 
 const SidebarComp = () => {
-  const { cities, setCities } = useContext(CompareContext);
+  const { cities } = useContext(CompareContext);
 
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">
       <div className="auroral-northern "></div>
       <div className="sidebar">
         <div className="w-full px-8 my-6">
-          {!cities && <SearchLocationComp setCities={setCities} />}
-          {cities && <SelectLocationComp cities={cities} />}
+          {!cities && <SearchLocationComp />}
+          {cities && <SelectLocationComp />}
         </div>
       </div>
     </div>

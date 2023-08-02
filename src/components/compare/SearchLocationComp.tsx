@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
+import { invalidInputType } from "../../types";
 
-const SearchLocationComp = ({ setCities }) => {
+const SearchLocationComp = () => {
   const {
     errorSearch,
     isLoading,
@@ -13,9 +14,12 @@ const SearchLocationComp = ({ setCities }) => {
     location2,
     setLocation2,
   } = useContext(CompareContext);
-  const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
+  const [invalidInput, setInvalidInput] = useState<invalidInputType>({
+    loc1: "",
+    loc2: "",
+  });
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!location1 && !location2) {

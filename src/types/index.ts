@@ -53,3 +53,14 @@ export type CityType = {
   name: string;
   state: string;
 };
+
+export type ForecastListItemType = {
+  wind: any;
+  clouds: any;
+  main: any;
+};
+
+export type invalidInputType = {
+  loc1?: string;
+  loc2?: string;
+};

@@ -1,16 +1,20 @@
 import { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
+import { CityType, invalidInputType } from "../../types";
 
-const SelectLocationComp = ({ cities }) => {
-  const { cities1, cities2 } = cities;
-  const [location1, setLocation1] = useState("");
-  const [location2, setLocation2] = useState("");
-  const [invalidInput, setInvalidInput] = useState({ loc1: "", loc2: "" });
-  const { data, isLoading, setIsLoading, setSearchParams } =
+const SelectLocationComp = () => {
+  const [location1, setLocation1] = useState<CityType | "">("");
+  const [location2, setLocation2] = useState<CityType | "">("");
+  const [invalidInput, setInvalidInput] = useState<invalidInputType>({
+    loc1: "",
+    loc2: "",
+  });
+  const { data, isLoading, setIsLoading, setSearchParams, cities } =
     useContext(CompareContext);
+  const { cities1, cities2 } = cities;
 
-  const handleOnSubmitForm = async (e) => {
+  const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
 
     if (!location1 || !location2) {
@@ -48,7 +52,7 @@ const SelectLocationComp = ({ cities }) => {
         <div className="mt-4  text-color3">
           <h3 className="mt-4">Location1</h3>
           <ul className="mt-2">
-            {cities1.map((city, index) => {
+            {cities1.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
                 <li key={state}>
@@ -75,7 +79,7 @@ const SelectLocationComp = ({ cities }) => {
         <div className="mt-4  text-color5">
           <h3 className="mt-4">Location2</h3>
           <ul className="mt-2">
-            {cities2.map((city, index) => {
+            {cities2.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
                 <li key={state}>
