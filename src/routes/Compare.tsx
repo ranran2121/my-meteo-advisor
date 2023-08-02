@@ -4,10 +4,16 @@ import SidebarComp from "../components/compare/SidebarComp";
 import Message from "../components/Message";
 import Error from "../components/Error";
 import DisplayComp from "../components/compare/DisplayComp";
-import { WEATHER_API_BASEURL } from "./../constants";
+import { WEATHER_API_BASEURL } from "../constants";
 import axios from "axios";
+import {
+  ICompareContext,
+  CompareDataType,
+  CitiesType,
+  CityType,
+} from "../types";
 
-export const CompareContext = createContext(null);
+export const CompareContext = createContext<Partial<ICompareContext>>({});
 
 const Compare = () => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -18,11 +24,11 @@ const Compare = () => {
   const loc1 = searchParams.get("loc1");
   const loc2 = searchParams.get("loc2");
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<CompareDataType | null>(null);
   const [error, setError] = useState(false);
   const [errorSearch, setErrorSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [cities, setCities] = useState(null);
+  const [cities, setCities] = useState<CitiesType | null>(null);
   const [location1, setLocation1] = useState(loc1 ?? "");
   const [location2, setLocation2] = useState(loc2 ?? "");
 
@@ -61,11 +67,12 @@ const Compare = () => {
       const resp1 = await axios.get(URL1);
 
       if (resp1.data.length === 0) {
-        throw new Error("error");
+        setErrorSearch(true);
+        return;
       }
 
       const first1 = resp1.data.shift();
-      const cities1 = resp1.data.filter((city) => {
+      const cities1 = resp1.data.filter((city: CityType) => {
         return city.state !== first1.state;
       });
       cities1.unshift(first1);
@@ -74,11 +81,12 @@ const Compare = () => {
       const resp2 = await axios.get(URL2);
 
       if (resp2.data.length === 0) {
-        throw new Error("error");
+        setErrorSearch(true);
+        return;
       }
 
       const first2 = resp2.data.shift();
-      const cities2 = resp2.data.filter((city) => {
+      const cities2 = resp2.data.filter((city: CityType) => {
         return city.state !== first2.state;
       });
       cities2.unshift(first2);
@@ -102,7 +110,7 @@ const Compare = () => {
   useEffect(() => {
     if (data || error || errorSearch) {
       document
-        .getElementById("comp-display")
+        .getElementById("comp-display")!
         .scrollIntoView({ behavior: "smooth" });
     }
   }, [data, error, errorSearch]);
@@ -128,7 +136,7 @@ const Compare = () => {
         setLocation2,
       }}
     >
-      <div className="flex flex-col md:flex md:flex-row lg:h-screen ">
+      <div className="flex flex-col md:flex md:flex-row md:h-screen ">
         <div className="md:basis-1/4">
           <SidebarComp />
         </div>

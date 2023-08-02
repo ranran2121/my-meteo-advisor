@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-export const findIndex = () => {
+export const findIndex = (): number => {
   const today = new Date();
   const t = format(today, "yyyy-MM-dd");
   const [year, month, day] = t.split("-");

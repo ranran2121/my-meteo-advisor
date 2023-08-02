@@ -4,8 +4,9 @@ import { useSearchParams } from "react-router-dom";
 import Message from "../components/Message";
 import Error from "../components/Error";
 import Display from "../components/single/Display";
+import { ISingleContext } from "../types";
 
-export const SingleContext = createContext(null);
+export const SingleContext = createContext<Partial<ISingleContext>>({});
 
 const SingleLocation = () => {
   const [data, setData] = useState(null);
@@ -16,7 +17,9 @@ const SingleLocation = () => {
 
   useEffect(() => {
     if (data || error || errorSearch) {
-      document.getElementById("display").scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById("display")!
+        .scrollIntoView({ behavior: "smooth" });
     }
   }, [data, error, errorSearch]);
 

@@ -93,7 +93,7 @@ const DisplayComp = () => {
 
 export default DisplayComp;
 
-function givePoints(l) {
+function givePoints(l: any) {
   const { clouds, main, wind } = l;
   const pointsHum = 100 - main.humidity;
   const pointsWind = 200 - wind.speed;

@@ -2,8 +2,9 @@ import { createContext, useState, useEffect } from "react";
 import SidebarFar from "../components/FarAndBeyond/SidebarFar";
 import Message from "../components/Message";
 import DisplayFar from "../components/FarAndBeyond/DisplayFar";
+import { IFarContext } from "../types";
 
-export const FarContext = createContext(null);
+export const FarContext = createContext<Partial<IFarContext>>({});
 
 const FarAndBeyond = () => {
   const [data, setData] = useState(null);
@@ -12,7 +13,7 @@ const FarAndBeyond = () => {
   useEffect(() => {
     if (data || error) {
       document
-        .getElementById("far-display")
+        .getElementById("far-display")!
         .scrollIntoView({ behavior: "smooth" });
     }
   }, [data, error]);
