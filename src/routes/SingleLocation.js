@@ -42,7 +42,7 @@ const SingleLocation = () => {
         <div className="md:basis-3/4 h-full self-center" id="display">
           {!data && !error && !errorSearch && <Message />}
           {errorSearch && <Error />}
-          {!errorSearch && <Display />}
+          {!errorSearch && data && <Display />}
         </div>
       </div>
     </SingleContext.Provider>

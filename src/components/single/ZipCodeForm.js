@@ -1,13 +1,52 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
+import { WEATHER_API_BASEURL } from "../../constants";
+import axios from "axios";
 
 const ZipCodeForm = () => {
-  const { setError, setIsLoading, isLoading, setSearchParams } =
-    useContext(SingleContext);
-  const [zipCode, setZipCode] = useState("");
-  const [countryCode, setCountryCode] = useState("");
+  const {
+    setError,
+    setIsLoading,
+    isLoading,
+    setSearchParams,
+    searchParams,
+    setData,
+  } = useContext(SingleContext);
+  const zip = searchParams.get("zipCode");
+  const country = searchParams.get("countryCode");
+  const [zipCode, setZipCode] = useState(zip ?? "");
+  const [countryCode, setCountryCode] = useState(country ?? "");
   const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
+
+  const loaderZip = async () => {
+    try {
+      //call openwathermap geolocation api to retrieve lat&lon coordinates
+      const URL = `${WEATHER_API_BASEURL}/geo/1.0/zip?zip=${zip},${country.toUpperCase()}&limit=5&appid=${
+        process.env.REACT_APP_WEATHER_API_KEY
+      }`;
+      const city = await axios.get(URL);
+      //use the lat&lon to retrieve forecast
+      const { lat, lon } = city.data;
+      const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+      const forecast = await axios.get(URL2);
+
+      setData(forecast.data);
+    } catch (e) {
+      setData(null);
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (zip && country) {
+      loaderZip();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zip, country, isLoading]);
 
   const isValidForm = () => {
     return !invalidInput.zip && !invalidInput.country;
@@ -44,7 +83,6 @@ const ZipCodeForm = () => {
 
     setIsLoading(true);
     setSearchParams({ zipCode, countryCode });
-    //navigate(`/single-location-by-zip/${zipCode}/${countryCode}`);
   };
 
   return (
