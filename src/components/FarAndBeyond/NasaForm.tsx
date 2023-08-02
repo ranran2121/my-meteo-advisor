@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
 import { format } from "date-fns";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -21,7 +21,7 @@ const NasaForm = () => {
     setSearchParams({ day: date });
   };
 
-  const loaderNasa = async () => {
+  const loaderNasa = useCallback(async () => {
     try {
       const URL = `${NASA_API_BASEURL}/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${day}&hd=true`;
       const response = await axios.get(URL);
@@ -32,13 +32,13 @@ const NasaForm = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [day, setData, setError]);
 
   useEffect(() => {
     if (day) {
       loaderNasa();
     }
-  }, [day]);
+  }, [day, loaderNasa]);
 
   return (
     <div className="px-8 pt-2 md:pt-8 w-full flex flex-col justify-center my-6">

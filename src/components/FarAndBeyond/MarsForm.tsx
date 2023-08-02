@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
 import BeatLoader from "react-spinners/BeatLoader";
 import { NASA_API_BASEURL } from "../../constants";
@@ -10,9 +10,9 @@ const MarsForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const mars = searchParams.get("mars");
+  const far = searchParams.get("far");
 
-  const loaderMars = async () => {
+  const loaderMars = useCallback(async () => {
     try {
       const URL = `${NASA_API_BASEURL}/insight_weather/?api_key=${process.env.REACT_APP_NASA_API_KEY}&feedtype=json&ver=1.0`;
       const response = await axios.get(URL);
@@ -28,21 +28,21 @@ const MarsForm = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [setData, setError]);
 
   const handleOnClick = async () => {
     setError(false);
     setData(null);
     setIsLoading(true);
 
-    setSearchParams({ mars: true });
+    setSearchParams({ far: "mars" });
   };
 
   useEffect(() => {
-    if (mars) {
+    if (far === "mars") {
       loaderMars();
     }
-  }, [mars]);
+  }, [loaderMars, far]);
 
   return (
     <div className="px-8 pt-2 md:pt-10 w-full flex flex-col justify-center my-6">

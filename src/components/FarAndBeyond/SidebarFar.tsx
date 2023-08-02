@@ -37,6 +37,7 @@ const SidebarFar = () => {
               checked={!isNasa}
               onChange={() => {
                 setData(null);
+                setSearchParams("");
                 setIsNasa(false);
               }}
             />
@@ -57,6 +58,7 @@ const SidebarFar = () => {
               checked={isNasa}
               onChange={() => {
                 setData(null);
+                setSearchParams("");
                 setIsNasa(true);
               }}
             />
