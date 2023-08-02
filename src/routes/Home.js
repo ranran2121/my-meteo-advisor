@@ -20,20 +20,21 @@ const Home = () => {
         <h2 className="text-color4 text-xl md:text-2xl text-center">
           Take time to explore and find ...
         </h2>
-
-        {HOMEPAGELIST.map((element) => {
-          const { src, text, link, alt, left } = element;
-          return (
-            <Cloud
-              key={alt}
-              src={src}
-              alt={alt}
-              text={text}
-              link={link}
-              left={left}
-            />
-          );
-        })}
+        <div className="flex flex-col mt-28 items-center md:items-start">
+          {HOMEPAGELIST.map((element) => {
+            const { src, text, link, alt, left } = element;
+            return (
+              <Cloud
+                key={alt}
+                src={src}
+                alt={alt}
+                text={text}
+                link={link}
+                left={left}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

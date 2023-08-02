@@ -29,13 +29,9 @@ code {
 }
 
 .cloud {
-  margin-top: 70px;
-  width: 350px;
-  height: 120px;
-  background: #eceff1;
-  box-shadow: 10px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 100px;
+  @apply bg-color4 rounded-[100px] w-full md:w-[400px] h-[200px];
 }
+
 .cloud::after,
 .cloud::before {
   content: "";
@@ -44,15 +40,11 @@ code {
   background: inherit;
   border-radius: inherit;
 }
-.cloud::after {
-  width: 100px;
-  height: 100px;
-  top: -220px;
-  left: 50px;
-}
+
 .cloud::before {
-  width: 180px;
-  height: 180px;
-  top: -70px;
-  left: 130px;
+  @apply w-[150px] h-[150px] -top-[55px] left-[95px] md:w-[200px] md:h-[200px] md:-top-[80px] md:left-[150px];
+}
+
+.cloud::after {
+  @apply w-[80px] h-[80px] -top-[90px] -left-[115px] md:w-[120px] md:h-[120px] md:-top-[120px] md:-left-[140px];
 }
