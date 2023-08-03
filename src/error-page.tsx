@@ -1,9 +1,9 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import storm from "./assets/storm.jpeg";
 
 export default function ErrorPage() {
-  const error = useRouteError();
+  const error: unknown = useRouteError();
   console.error(error);
 
   return (
@@ -14,7 +14,7 @@ export default function ErrorPage() {
       <div className="py-4 px-4 text-xl md:text-3xl">
         <h2 className="text-color1  font-bold">Oops!</h2>
 
-        {error.status === 404 ? (
+        {isRouteErrorResponse(error) ? (
           <h2 className="text-color1 font-bold">Page not found</h2>
         ) : (
           <h2 className="text-color1 font-bold">

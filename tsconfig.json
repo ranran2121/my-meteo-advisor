@@ -12,6 +12,7 @@
     "outDir": "dist",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "node",
-    "allowJs": true
+    "allowJs": true,
+    "useUnknownInCatchVariables": true
   }
 }
