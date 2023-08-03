@@ -1,7 +1,9 @@
+import { FC } from "react";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { CloudType } from "../types";
 
-const Cloud = ({ src, text, link, alt, left }) => {
+const Cloud: FC<CloudType> = ({ src, text, link, alt, left }) => {
   return (
     <div
       className={`cloud relative 

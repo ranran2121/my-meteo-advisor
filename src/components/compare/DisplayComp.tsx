@@ -53,10 +53,10 @@ const DisplayComp = () => {
             </div>
           </div>
           <div className="basis-1/3">
-            <SingleBlock city={data.forecast1.city.name} />
+            <SingleBlock cityName={data.forecast1.city.name} />
           </div>
           <div className="basis-1/3">
-            <SingleBlock city={data.forecast2.city.name} />
+            <SingleBlock cityName={data.forecast2.city.name} />
           </div>
         </div>
 

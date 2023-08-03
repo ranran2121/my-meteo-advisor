@@ -70,3 +70,15 @@ export type invalidInputType = {
 export type SearchLocationType = {
   setCities: (cities: CityType[]) => void;
 };
+
+export type CloudType = {
+  src: string;
+  text: string;
+  link: string;
+  alt: string;
+  left: boolean;
+};
+
+export type DataType = {
+  data: any;
+};

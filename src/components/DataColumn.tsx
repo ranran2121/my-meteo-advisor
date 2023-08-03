@@ -1,6 +1,8 @@
+import { FC } from "react";
 import { format } from "date-fns";
+import { DataType } from "../types";
 
-const DataColumn = ({ data }) => {
+const DataColumn: FC<DataType> = ({ data }) => {
   const { dt_txt, main, wind, weather } = data;
 
   return (
