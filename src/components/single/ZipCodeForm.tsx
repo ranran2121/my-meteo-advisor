@@ -3,6 +3,7 @@ import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
+import { invalidInputType } from "../../types";
 
 const ZipCodeForm = () => {
   const {
@@ -17,7 +18,10 @@ const ZipCodeForm = () => {
   const country = searchParams.get("countryCode");
   const [zipCode, setZipCode] = useState(zip ?? "");
   const [countryCode, setCountryCode] = useState(country ?? "");
-  const [invalidInput, setInvalidInput] = useState({ zip: "", country: "" });
+  const [invalidInput, setInvalidInput] = useState<invalidInputType>({
+    zip: "",
+    country: "",
+  });
 
   const loaderZip = async () => {
     try {
@@ -52,7 +56,7 @@ const ZipCodeForm = () => {
     return !invalidInput.zip && !invalidInput.country;
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault();
     setError(false);
 

@@ -63,4 +63,10 @@ export type ForecastListItemType = {
 export type invalidInputType = {
   loc1?: string;
   loc2?: string;
+  zip?: string;
+  country?: string;
+};
+
+export type SearchLocationType = {
+  setCities: (cities: CityType[]) => void;
 };

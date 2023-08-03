@@ -4,9 +4,10 @@ import SearchLocation from "./SearchLocation";
 import SelectLocation from "./SelectLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
+import { CityType } from "../../types";
 
 const LocationForm = () => {
-  const [cities, setCities] = useState(null);
+  const [cities, setCities] = useState<CityType[] | null>(null);
   const { setIsLoading, setData, setError, searchParams } =
     useContext(SingleContext);
   const lat = searchParams.get("lat");

@@ -1,25 +1,26 @@
 import { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
+import { CityType } from "../../types";
 
-const SelectLocation = ({ cities }) => {
-  const [location, setLocation] = useState("");
+const SelectLocation = ({ cities }: { cities: CityType[] }) => {
+  const [location, setLocation] = useState<Partial<CityType | null>>({});
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(SingleContext);
 
-  const handleOnSubmitForm = async (e) => {
+  const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
 
     if (!location) {
       setIsInvalidInput(true);
+      return;
     }
 
     setIsLoading(true);
-    const { lat, lon } = location;
     setSearchParams({
-      lat,
-      lon,
+      lat: location.lat,
+      lon: location.lon,
     });
   };
 
@@ -31,7 +32,7 @@ const SelectLocation = ({ cities }) => {
         className="w-full flex flex-col justify-center"
       >
         <ul className="mt-4">
-          {cities.map((city, index) => {
+          {cities.map((city: CityType, index: number) => {
             const { state, name } = city;
             return (
               <li key={state}>
@@ -41,7 +42,8 @@ const SelectLocation = ({ cities }) => {
                   name={state}
                   value={index}
                   onChange={(e) => {
-                    setLocation(cities[e.target.value]);
+                    const i = Number(e.target.value);
+                    setLocation(cities[i]);
                   }}
                 />
                 <label htmlFor={state} className="ml-2">

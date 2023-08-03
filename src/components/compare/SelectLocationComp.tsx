@@ -4,8 +4,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { CityType, invalidInputType } from "../../types";
 
 const SelectLocationComp = () => {
-  const [location1, setLocation1] = useState<CityType | "">("");
-  const [location2, setLocation2] = useState<CityType | "">("");
+  const [location1, setLocation1] = useState<Partial<CityType | null>>({});
+  const [location2, setLocation2] = useState<Partial<CityType | null>>({});
   const [invalidInput, setInvalidInput] = useState<invalidInputType>({
     loc1: "",
     loc2: "",

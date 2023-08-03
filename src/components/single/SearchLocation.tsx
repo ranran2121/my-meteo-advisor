@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useState, FC } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
+import { CityType, SearchLocationType } from "../../types";
 
-const SearchLocation = ({ setCities }) => {
+const SearchLocation: FC<SearchLocationType> = ({ setCities }) => {
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const { errorSearch, setErrorSearch, setData, isLoading, setIsLoading } =
     useContext(SingleContext);
 
-  const handleOnSubmitForm = async (e) => {
+  const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
 
     if (!location) {
@@ -29,7 +30,7 @@ const SearchLocation = ({ setCities }) => {
       }
 
       const first = resp.data.shift();
-      const cities = resp.data.filter((city) => {
+      const cities = resp.data.filter((city: CityType) => {
         return city.state !== first.state;
       });
       cities.unshift(first);
