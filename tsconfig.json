@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
-    "target": "es2020",
+    "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,5 +14,6 @@
     "moduleResolution": "node",
     "allowJs": true,
     "useUnknownInCatchVariables": true
-  }
+  },
+  "include": ["src"]
 }
