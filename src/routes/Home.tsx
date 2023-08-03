@@ -1,3 +1,4 @@
+import React from "react";
 import "../input.css";
 import "../style/auroral.css";
 import { HOMEPAGELIST } from "../constants";

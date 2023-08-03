@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import MarsForm from "./MarsForm";
 import NasaForm from "./NasaForm";
 import "../../style/auroral.css";

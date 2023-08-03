@@ -1,3 +1,4 @@
+import React from "react";
 import LegendColumn from "../LegendColumn";
 import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";

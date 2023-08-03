@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import SidebarComp from "../components/compare/SidebarComp";
 import Message from "../components/Message";

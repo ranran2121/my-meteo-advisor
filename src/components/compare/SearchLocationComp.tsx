@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
-import { invalidInputType } from "../../types";
+import { invalidInputType } from "../../types/index";
 
 const SearchLocationComp = () => {
   const {

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import SearchLocation from "./SearchLocation";
 import SelectLocation from "./SelectLocation";

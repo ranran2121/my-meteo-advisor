@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import SearchLocationComp from "./SearchLocationComp";
 import SelectLocationComp from "./SelectLocationComp";
 import { CompareContext } from "../../routes/Compare";

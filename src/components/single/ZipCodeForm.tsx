@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
-import { invalidInputType } from "../../types";
+import { invalidInputType } from "../../types/index";
 
 const ZipCodeForm = () => {
   const {

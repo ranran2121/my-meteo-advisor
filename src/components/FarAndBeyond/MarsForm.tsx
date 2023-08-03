@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
 import BeatLoader from "react-spinners/BeatLoader";
 import { NASA_API_BASEURL } from "../../constants";

@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
-import { CityType, invalidInputType } from "../../types";
+import { CityType, invalidInputType } from "../../types/index";
 
 const SelectLocationComp = () => {
   const [location1, setLocation1] = useState<Partial<CityType | null>>({});

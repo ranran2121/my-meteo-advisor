@@ -1,3 +1,4 @@
+import React from "react";
 import { SunIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {

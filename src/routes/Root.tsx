@@ -1,3 +1,4 @@
+import React from "react";
 import "../style/index.css";
 import "../style/auroral.css";
 import Header from "../components/Header";

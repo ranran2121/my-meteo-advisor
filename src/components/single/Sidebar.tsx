@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";

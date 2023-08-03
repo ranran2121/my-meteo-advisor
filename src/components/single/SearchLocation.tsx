@@ -1,9 +1,9 @@
-import { useContext, useState, FC } from "react";
+import React, { useContext, useState, FC } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
-import { CityType, SearchLocationType } from "../../types";
+import { CityType, SearchLocationType } from "../../types/index";
 
 const SearchLocation: FC<SearchLocationType> = ({ setCities }) => {
   const [location, setLocation] = useState("");

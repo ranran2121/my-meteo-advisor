@@ -1,3 +1,5 @@
+import React from "react";
+
 const SingleBlock = ({ cityName }: { cityName: string }) => {
   return (
     <div className="flex flex-col rounded-xl text-color4  bg-color1 px-1 md:px-3 border-2 border-color1">

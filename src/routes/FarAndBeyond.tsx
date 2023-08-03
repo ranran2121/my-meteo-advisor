@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import SidebarFar from "../components/FarAndBeyond/SidebarFar";
 import Message from "../components/Message";
 import DisplayFar from "../components/FarAndBeyond/DisplayFar";

@@ -1,3 +1,4 @@
+import React from "react";
 import storm from "../assets/storm.jpeg";
 
 const Error = () => {
