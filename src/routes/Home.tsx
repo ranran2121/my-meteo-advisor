@@ -20,7 +20,7 @@ const Home = () => {
         <h2 className="text-color4 text-xl md:text-2xl text-center">
           Take time to explore and find ...
         </h2>
-        <div className="flex flex-col mt-28 items-center md:items-start">
+        <div className="flex flex-col mt-28 items-center md:items-start md:px-18 lg:px-28">
           {HOMEPAGELIST.map((element) => {
             const { src, text, link, alt, left } = element;
             return (
