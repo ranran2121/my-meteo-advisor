@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
 
 const Sidebar = () => {
-  const { setData, searchParams, setSearchParams } = useContext(SingleContext);
-  const zip = searchParams.get("zipCode");
-  const [isZip, setIsZip] = useState(zip ? true : false);
-
-  useEffect(() => {
-    if (zip) {
-      setIsZip(true);
-    } else {
-      setIsZip(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [zip, searchParams]);
+  const { setData, setSearchParams, searchParams } = useContext(SingleContext);
+  const zipCode = searchParams.get("zipCode");
+  const [isZip, setIsZip] = useState(zipCode ? true : false);
 
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">

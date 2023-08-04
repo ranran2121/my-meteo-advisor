@@ -1,9 +1,8 @@
-import React, { useContext, useState, FC } from "react";
+import React, { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
-import { SearchLocationType } from "../../types/index";
 
-const SearchLocation: FC<SearchLocationType> = ({ setCities }) => {
+const SearchLocation = () => {
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const { errorSearch, isLoading, setIsLoading, setSearchParams } =

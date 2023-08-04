@@ -13,12 +13,12 @@ const SelectLocation = ({
   const [location, setLocation] = useState<Partial<CityType | null>>({});
   const [locIndex, setLocIndex] = useState(locationIndex);
   const [isInvalidInput, setIsInvalidInput] = useState(false);
+
   const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(SingleContext);
 
   useEffect(() => {
     setLocIndex(locationIndex);
-    console.log();
   }, [locationIndex]);
 
   const handleOnSubmitForm = async (e: any) => {
@@ -53,7 +53,7 @@ const SelectLocation = ({
                 <input
                   type="radio"
                   id={state}
-                  name={state}
+                  name={name}
                   value={index}
                   checked={index === locIndex}
                   onChange={(e) => {
