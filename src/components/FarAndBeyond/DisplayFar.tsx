@@ -46,6 +46,8 @@ const DisplayFar = () => {
       </div>
     );
   }
+
+  return <></>;
 };
 
 export default DisplayFar;
