@@ -13,6 +13,7 @@ const LocationForm = () => {
   const state = searchParams.get("state");
   const lat = searchParams.get("lat");
   const lon = searchParams.get("lon");
+
   const [cities, setCities] = useState<CityType[] | null>(null);
   const [locationIndex, setLocationIndex] = useState<number | null>(null);
 
@@ -54,7 +55,7 @@ const LocationForm = () => {
     }
   }, [lat, lon, setData, setError, setIsLoading]);
 
-  const findLocationIndex = useCallback(() => {
+  const findLocationIndex = (cities: CityType[], state: string) => {
     let ind = 0;
     cities?.forEach((city, index) => {
       if (city.state === state) {
@@ -62,28 +63,32 @@ const LocationForm = () => {
       }
     });
     return ind;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  };
+
+  useEffect(() => {
+    if (cities) {
+      const index = findLocationIndex(cities, state);
+      setLocationIndex(index);
+    }
+  }, [cities, state]);
 
   useEffect(() => {
     if (lat && lon) {
       loaderCities();
-      const index = findLocationIndex();
-      setLocationIndex(index);
       loaderLoc();
     } else if (location) {
       loaderCities();
     } else {
       setData(null);
     }
-  }, [findLocationIndex, lat, loaderCities, loaderLoc, location, lon, setData]);
+  }, [lat, loaderCities, loaderLoc, location, lon, setData]);
 
   return (
     <>
       {location || lat ? (
         <SelectLocation cities={cities} locationIndex={locationIndex} />
       ) : (
-        <SearchLocation setCities={setCities} />
+        <SearchLocation />
       )}
     </>
   );

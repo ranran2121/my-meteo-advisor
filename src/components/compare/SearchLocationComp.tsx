@@ -4,16 +4,10 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { invalidInputType } from "../../types/index";
 
 const SearchLocationComp = () => {
-  const {
-    errorSearch,
-    isLoading,
-    setIsLoading,
-    setSearchParams,
-    location1,
-    setLocation1,
-    location2,
-    setLocation2,
-  } = useContext(CompareContext);
+  const { errorSearch, isLoading, setIsLoading, setSearchParams } =
+    useContext(CompareContext);
+  const [location1, setLocation1] = useState("");
+  const [location2, setLocation2] = useState("");
   const [invalidInput, setInvalidInput] = useState<invalidInputType>({
     loc1: "",
     loc2: "",

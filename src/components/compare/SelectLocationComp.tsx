@@ -1,18 +1,37 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CityType, invalidInputType } from "../../types/index";
 
-const SelectLocationComp = () => {
+const SelectLocationComp = ({
+  cities1,
+  cities2,
+  location1Index,
+  location2Index,
+}: {
+  cities1: CityType[] | null;
+  cities2: CityType[] | null;
+  location1Index: number | null;
+  location2Index: number | null;
+}) => {
   const [location1, setLocation1] = useState<Partial<CityType | null>>({});
   const [location2, setLocation2] = useState<Partial<CityType | null>>({});
+  const [loc1Index, setLoc1Index] = useState(location1Index);
+  const [loc2Index, setLoc2Index] = useState(location2Index);
   const [invalidInput, setInvalidInput] = useState<invalidInputType>({
     loc1: "",
     loc2: "",
   });
-  const { data, isLoading, setIsLoading, setSearchParams, cities } =
+  const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(CompareContext);
-  const { cities1, cities2 } = cities;
+
+  useEffect(() => {
+    setLoc1Index(location1Index);
+  }, [location1Index]);
+
+  useEffect(() => {
+    setLoc2Index(location2Index);
+  }, [location2Index]);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
@@ -35,8 +54,12 @@ const SelectLocationComp = () => {
 
     setIsLoading(true);
     setSearchParams({
+      loc1: location1.name,
+      state1: location1.state,
       lat1: location1.lat,
       lon1: location1.lon,
+      loc2: location2.name,
+      state2: location2.state,
       lat2: location2.lat,
       lon2: location2.lon,
     });
@@ -52,17 +75,20 @@ const SelectLocationComp = () => {
         <div className="mt-4  text-color3">
           <h3 className="mt-4">Location1</h3>
           <ul className="mt-2">
-            {cities1.map((city: CityType, index: number) => {
+            {cities1?.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
                 <li key={state}>
                   <input
                     type="radio"
                     id={name + state}
-                    name={name + state}
+                    name={name}
                     value={index}
+                    checked={index === loc1Index}
                     onChange={(e) => {
-                      setLocation1(cities1[e.target.value]);
+                      setLoc1Index(index);
+                      const i = Number(e.target.value);
+                      setLocation1(cities1[i]);
                     }}
                   />
                   <label htmlFor={name + state} className="ml-2">
@@ -79,7 +105,7 @@ const SelectLocationComp = () => {
         <div className="mt-4  text-color5">
           <h3 className="mt-4">Location2</h3>
           <ul className="mt-2">
-            {cities2.map((city: CityType, index: number) => {
+            {cities2?.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
                 <li key={state}>
@@ -88,8 +114,11 @@ const SelectLocationComp = () => {
                     id={name + state}
                     name={name + state}
                     value={index}
+                    checked={index === loc2Index}
                     onChange={(e) => {
-                      setLocation2(cities2[e.target.value]);
+                      setLoc2Index(index);
+                      const i = Number(e.target.value);
+                      setLocation2(cities2[i]);
                     }}
                   />
                   <label htmlFor={name + state} className="ml-2">
