@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CityType } from "../../types/index";
@@ -6,20 +6,16 @@ import { CityType } from "../../types/index";
 const SelectLocation = ({
   cities,
   locationIndex,
+  setLocationIndex,
 }: {
   cities: CityType[] | null;
   locationIndex: number | null;
+  setLocationIndex: (index: number) => void;
 }) => {
   const [location, setLocation] = useState<Partial<CityType | null>>({});
-  const [locIndex, setLocIndex] = useState(locationIndex);
   const [isInvalidInput, setIsInvalidInput] = useState(false);
-
   const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(SingleContext);
-
-  useEffect(() => {
-    setLocIndex(locationIndex);
-  }, [locationIndex]);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
@@ -48,6 +44,7 @@ const SelectLocation = ({
         <ul className="mt-4">
           {cities?.map((city: CityType, index: number) => {
             const { state, name } = city;
+
             return (
               <li key={state}>
                 <input
@@ -55,10 +52,10 @@ const SelectLocation = ({
                   id={state}
                   name={name}
                   value={index}
-                  checked={index === locIndex}
+                  checked={index === locationIndex}
                   onChange={(e) => {
                     const i = Number(e.target.value);
-                    setLocIndex(index);
+                    setLocationIndex(index);
                     setLocation(cities[i]);
                   }}
                 />

@@ -90,14 +90,14 @@ const LocationFormComp = () => {
   };
 
   useEffect(() => {
-    if (cities1) {
+    if (cities1 && state1) {
       const index1 = findLocationIndex(cities1, state1);
       setLocation1Index(index1);
     }
   }, [cities1, state1]);
 
   useEffect(() => {
-    if (cities2) {
+    if (cities2 && state2) {
       const index2 = findLocationIndex(cities2, state2);
       setLocation2Index(index2);
     }
@@ -132,6 +132,8 @@ const LocationFormComp = () => {
           cities2={cities2}
           location1Index={location1Index}
           location2Index={location2Index}
+          setLocation1Index={setLocation1Index}
+          setLocation2Index={setLocation2Index}
         />
       ) : (
         <SearchLocationComp />

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CityType, invalidInputType } from "../../types/index";
@@ -8,30 +8,24 @@ const SelectLocationComp = ({
   cities2,
   location1Index,
   location2Index,
+  setLocation1Index,
+  setLocation2Index,
 }: {
   cities1: CityType[] | null;
   cities2: CityType[] | null;
   location1Index: number | null;
   location2Index: number | null;
+  setLocation1Index: (index: number) => void;
+  setLocation2Index: (index: number) => void;
 }) => {
   const [location1, setLocation1] = useState<Partial<CityType | null>>({});
   const [location2, setLocation2] = useState<Partial<CityType | null>>({});
-  const [loc1Index, setLoc1Index] = useState(location1Index);
-  const [loc2Index, setLoc2Index] = useState(location2Index);
   const [invalidInput, setInvalidInput] = useState<invalidInputType>({
     loc1: "",
     loc2: "",
   });
   const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(CompareContext);
-
-  useEffect(() => {
-    setLoc1Index(location1Index);
-  }, [location1Index]);
-
-  useEffect(() => {
-    setLoc2Index(location2Index);
-  }, [location2Index]);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
@@ -84,9 +78,9 @@ const SelectLocationComp = ({
                     id={name + state}
                     name={name}
                     value={index}
-                    checked={index === loc1Index}
+                    checked={index === location1Index}
                     onChange={(e) => {
-                      setLoc1Index(index);
+                      setLocation1Index(index);
                       const i = Number(e.target.value);
                       setLocation1(cities1[i]);
                     }}
@@ -114,9 +108,9 @@ const SelectLocationComp = ({
                     id={name + state}
                     name={name + state}
                     value={index}
-                    checked={index === loc2Index}
+                    checked={index === location2Index}
                     onChange={(e) => {
-                      setLoc2Index(index);
+                      setLocation2Index(index);
                       const i = Number(e.target.value);
                       setLocation2(cities2[i]);
                     }}

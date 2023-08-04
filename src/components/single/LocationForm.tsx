@@ -66,7 +66,7 @@ const LocationForm = () => {
   };
 
   useEffect(() => {
-    if (cities) {
+    if (cities && state) {
       const index = findLocationIndex(cities, state);
       setLocationIndex(index);
     }
@@ -86,7 +86,11 @@ const LocationForm = () => {
   return (
     <>
       {location || lat ? (
-        <SelectLocation cities={cities} locationIndex={locationIndex} />
+        <SelectLocation
+          cities={cities}
+          locationIndex={locationIndex}
+          setLocationIndex={setLocationIndex}
+        />
       ) : (
         <SearchLocation />
       )}
