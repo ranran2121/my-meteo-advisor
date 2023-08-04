@@ -5,7 +5,7 @@ import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
 
 const Sidebar = () => {
-  const { setData, searchParams } = useContext(SingleContext);
+  const { setData, searchParams, setSearchParams } = useContext(SingleContext);
   const zip = searchParams.get("zipCode");
   const [isZip, setIsZip] = useState(zip ? true : false);
 
@@ -38,6 +38,7 @@ const Sidebar = () => {
               checked={isZip}
               onChange={() => {
                 setData(null);
+                setSearchParams("");
                 setIsZip(true);
               }}
             />
@@ -58,6 +59,7 @@ const Sidebar = () => {
               checked={!isZip}
               onChange={() => {
                 setData(null);
+                setSearchParams("");
                 setIsZip(false);
               }}
             />

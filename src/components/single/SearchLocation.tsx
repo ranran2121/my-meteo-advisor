@@ -1,14 +1,12 @@
 import React, { useContext, useState, FC } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import { WEATHER_API_BASEURL } from "../../constants";
-import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
-import { CityType, SearchLocationType } from "../../types/index";
+import { SearchLocationType } from "../../types/index";
 
 const SearchLocation: FC<SearchLocationType> = ({ setCities }) => {
   const [location, setLocation] = useState("");
   const [isInvalidInput, setIsInvalidInput] = useState(false);
-  const { errorSearch, setErrorSearch, setData, isLoading, setIsLoading } =
+  const { errorSearch, isLoading, setIsLoading, setSearchParams } =
     useContext(SingleContext);
 
   const handleOnSubmitForm = async (e: any) => {
@@ -20,28 +18,7 @@ const SearchLocation: FC<SearchLocationType> = ({ setCities }) => {
     }
 
     setIsLoading(true);
-
-    try {
-      const URL = `${WEATHER_API_BASEURL}/geo/1.0/direct?q=${location}&limit=5&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-      const resp = await axios.get(URL);
-
-      if (resp.data.length === 0) {
-        throw new Error("error");
-      }
-
-      const first = resp.data.shift();
-      const cities = resp.data.filter((city: CityType) => {
-        return city.state !== first.state;
-      });
-      cities.unshift(first);
-
-      setCities(cities);
-    } catch (e) {
-      setErrorSearch(true);
-    } finally {
-      setData(null);
-      setIsLoading(false);
-    }
+    setSearchParams({ loc: location });
   };
 
   return (

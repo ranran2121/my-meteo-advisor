@@ -104,16 +104,24 @@ const SelectLocationComp = () => {
           )}
         </div>
         {!data && (
-          <button
-            type="submit"
-            className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
-          >
-            {!isLoading ? (
-              "search"
-            ) : (
-              <BeatLoader color="#fff" speedMultiplier={1} />
-            )}
-          </button>
+          <>
+            <button
+              type="submit"
+              className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+            >
+              {!isLoading ? (
+                "search"
+              ) : (
+                <BeatLoader color="#fff" speedMultiplier={1} />
+              )}
+            </button>{" "}
+            <a
+              href="/compare-locations"
+              className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
+            >
+              back
+            </a>
+          </>
         )}
         {data && (
           <a

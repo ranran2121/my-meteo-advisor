@@ -1,13 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CityType } from "../../types/index";
 
-const SelectLocation = ({ cities }: { cities: CityType[] }) => {
+const SelectLocation = ({
+  cities,
+  locationIndex,
+}: {
+  cities: CityType[] | null;
+  locationIndex: number | null;
+}) => {
   const [location, setLocation] = useState<Partial<CityType | null>>({});
+  const [locIndex, setLocIndex] = useState(locationIndex);
   const [isInvalidInput, setIsInvalidInput] = useState(false);
   const { data, isLoading, setIsLoading, setSearchParams } =
     useContext(SingleContext);
+
+  useEffect(() => {
+    setLocIndex(locationIndex);
+    console.log();
+  }, [locationIndex]);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
@@ -19,6 +31,8 @@ const SelectLocation = ({ cities }: { cities: CityType[] }) => {
 
     setIsLoading(true);
     setSearchParams({
+      loc: location.name,
+      state: location.state,
       lat: location.lat,
       lon: location.lon,
     });
@@ -32,7 +46,7 @@ const SelectLocation = ({ cities }: { cities: CityType[] }) => {
         className="w-full flex flex-col justify-center"
       >
         <ul className="mt-4">
-          {cities.map((city: CityType, index: number) => {
+          {cities?.map((city: CityType, index: number) => {
             const { state, name } = city;
             return (
               <li key={state}>
@@ -41,8 +55,10 @@ const SelectLocation = ({ cities }: { cities: CityType[] }) => {
                   id={state}
                   name={state}
                   value={index}
+                  checked={index === locIndex}
                   onChange={(e) => {
                     const i = Number(e.target.value);
+                    setLocIndex(index);
                     setLocation(cities[i]);
                   }}
                 />
