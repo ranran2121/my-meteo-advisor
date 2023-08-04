@@ -43,7 +43,7 @@ const DisplayComp = () => {
         </h1>
       </div>
 
-      <div className="border-b-2 border-color1 w-[70%] my-4"></div>
+      <div className="border-b-2 border-color1 w-[70%] my-2"></div>
 
       <div className="mt-4">
         <div className="flex flex-row gap-1 lg:gap-2">
