@@ -37,10 +37,10 @@ const SearchLocationComp = () => {
 
   return (
     <div className="my-4 text-color4">
-      <h2 className="text-xl font-semibold px-8">Search by Location</h2>
+      <h2 className="text-xl font-semibold">Search by Location</h2>
       <form
         onSubmit={handleOnSubmit}
-        className="px-8 pt-2 md:pt-10 w-full flex flex-col justify-center"
+        className=" pt-2 md:pt-10 w-full flex flex-col justify-center"
       >
         <label
           className="my-4 text-color4 font-semibold"

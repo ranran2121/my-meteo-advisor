@@ -30,7 +30,7 @@ const DisplayComp = () => {
 
   return (
     <div className="text-center flex flex-col items-center mb-4">
-      <div className="py-4 px-4">
+      <div className="pt-4 px-4">
         <h2 className="text-color1 text-2xl font-bold">
           This is the weather forecast for
         </h2>
@@ -73,7 +73,7 @@ const DisplayComp = () => {
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="my-6">
         {!hasWinner ? (
           <button
             type="button"
