@@ -35,7 +35,7 @@ const SelectLocation = ({
   };
 
   return (
-    <div className="my-4 text-color4 px-8 w-full">
+    <div className="my-4 text-color4 w-full">
       <h2 className="text-xl font-semibold text-color5">Refine your search</h2>
       <form
         onSubmit={handleOnSubmitForm}
@@ -46,7 +46,7 @@ const SelectLocation = ({
             const { state, name } = city;
 
             return (
-              <li key={state}>
+              <li key={state + name}>
                 <input
                   type="radio"
                   id={state}

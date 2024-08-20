@@ -31,10 +31,17 @@ const ZipCodeForm = () => {
       }`;
       const city = await axios.get(URL);
       //use the lat&lon to retrieve forecast
-      const { lat, lon } = city.data;
+      const { lat, lon, name } = city.data;
+
       const URL2 = `${WEATHER_API_BASEURL}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
       const forecast = await axios.get(URL2);
-
+      setSearchParams({
+        lat,
+        lon,
+        zipCode: zip,
+        countryCode: country,
+        loc: name,
+      });
       setData(forecast.data);
     } catch (e) {
       setData(null);
@@ -90,7 +97,7 @@ const ZipCodeForm = () => {
   };
 
   return (
-    <div className="my-4 text-color4 w-full px-8">
+    <div className="my-4 text-color4">
       <form
         onSubmit={handleOnSubmit}
         className="w-full flex flex-col justify-center"

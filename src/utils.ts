@@ -16,3 +16,16 @@ export const findIndex = (): number => {
 
   return index + 1;
 };
+
+export const hasValidCoordinates = (lat: string | null, lon: string | null) => {
+  if (lat === null || lon === null || lat === "" || lon === "") {
+    return false;
+  }
+
+  return (
+    !isNaN(Number(lat)) &&
+    !isNaN(Number(lon)) &&
+    isFinite(Number(lat)) &&
+    isFinite(Number(lon))
+  );
+};

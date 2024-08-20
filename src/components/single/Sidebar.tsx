@@ -3,11 +3,19 @@ import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
 import ZipCodeForm from "./ZipCodeForm";
+import Map from "../Map";
+import { hasValidCoordinates } from "../../utils";
 
 const Sidebar = () => {
   const { setData, setSearchParams, searchParams } = useContext(SingleContext);
   const zipCode = searchParams.get("zipCode");
   const [isZip, setIsZip] = useState(zipCode ? true : false);
+
+  const loc = {
+    lat: searchParams.get("lat"),
+    lon: searchParams.get("lon"),
+    name: searchParams.get("loc"),
+  };
 
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">
@@ -34,7 +42,6 @@ const Sidebar = () => {
               }}
             />
           </div>
-
           <div className="flex flex-row my-2 justify-between">
             <label
               htmlFor="location"
@@ -55,8 +62,10 @@ const Sidebar = () => {
               }}
             />
           </div>
+
+          {isZip ? <ZipCodeForm /> : <LocationForm />}
+          {hasValidCoordinates(loc.lat, loc.lon) && <Map loc1={loc} />}
         </div>
-        {isZip ? <ZipCodeForm /> : <LocationForm />}
       </div>
     </div>
   );
