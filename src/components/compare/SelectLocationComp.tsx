@@ -61,7 +61,7 @@ const SelectLocationComp = () => {
                       setLocation1Index(i);
                     }}
                   />
-                  <label htmlFor={name + state} className="ml-2">
+                  <label htmlFor={name + state + index} className="ml-2">
                     {name}, {state}
                   </label>
                 </li>
@@ -112,7 +112,7 @@ const SelectLocationComp = () => {
               ) : (
                 <BeatLoader color="#fff" speedMultiplier={1} />
               )}
-            </button>{" "}
+            </button>
             <a
               href="/compare-locations"
               className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"

@@ -1,14 +1,9 @@
 export interface ISingleContext {
-  data: any;
-  setData: any;
-  error: any;
-  setError: any;
   isLoading: any;
   setIsLoading: any;
-  errorSearch: any;
-  setErrorSearch: any;
-  searchParams: any;
-  setSearchParams: any;
+  cities: any;
+  weather: any;
+  citiesError: any;
 }
 
 export interface ICompareContext {

@@ -4,15 +4,10 @@ import DataColumn from "../DataColumn";
 import { findIndex } from "../../utils";
 import { useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import Error from "../Error";
 
 const Display = () => {
-  const { data, error } = useContext(SingleContext);
+  const { weather } = useContext(SingleContext);
   const i = findIndex();
-
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <div className="text-center flex flex-col items-center mb-4">
@@ -21,7 +16,7 @@ const Display = () => {
           This is the weather forecast for
         </h2>
         <h1 className="mt-4 text-color2 font-extrabold text-3xl">
-          {data.city.name}
+          {weather.city.name}
         </h1>
       </div>
 
@@ -32,13 +27,13 @@ const Display = () => {
           <LegendColumn />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[i]} />
+          <DataColumn data={weather.list[i]} />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[i + 8]} />
+          <DataColumn data={weather.list[i + 8]} />
         </div>
         <div className="basis-1/4">
-          <DataColumn data={data.list[i + 16]} />
+          <DataColumn data={weather.list[i + 16]} />
         </div>
       </div>
     </div>

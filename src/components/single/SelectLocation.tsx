@@ -1,36 +1,28 @@
 import React, { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
-import BeatLoader from "react-spinners/BeatLoader";
-import { CityType } from "../../types/index";
+import { useSearchParams } from "react-router-dom";
+import CitiesList from "../forms/CitiesList";
 
-const SelectLocation = ({
-  cities,
-  locationIndex,
-  setLocationIndex,
-}: {
-  cities: CityType[] | null;
-  locationIndex: number | null;
-  setLocationIndex: (index: number) => void;
-}) => {
-  const [location, setLocation] = useState<Partial<CityType | null>>({});
-  const [isInvalidInput, setIsInvalidInput] = useState(false);
-  const { data, isLoading, setIsLoading, setSearchParams } =
-    useContext(SingleContext);
+const SelectLocation = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let [_, setSearchParams] = useSearchParams();
+  const { cities } = useContext(SingleContext);
+  const [invalidInput, setInvalidInput] = useState("");
+  const [locationIndex, setLocationIndex] = useState<number | null>(null);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
 
-    if (!location) {
-      setIsInvalidInput(true);
+    if (locationIndex === null) {
+      setInvalidInput("selection is required");
       return;
     }
 
-    setIsLoading(true);
     setSearchParams({
-      loc: location.name,
-      state: location.state,
-      lat: location.lat,
-      lon: location.lon,
+      loc: cities[locationIndex].name,
+      state: cities[locationIndex].state,
+      lat: cities[locationIndex].lat,
+      lon: cities[locationIndex].lon,
     });
   };
 
@@ -41,60 +33,33 @@ const SelectLocation = ({
         onSubmit={handleOnSubmitForm}
         className="w-full flex flex-col justify-center"
       >
-        <ul className="mt-4">
-          {cities?.map((city: CityType, index: number) => {
-            const { state, name } = city;
+        <CitiesList
+          cities={cities}
+          setLocationIndex={setLocationIndex}
+          locationIndex={locationIndex}
+          invalidInput={invalidInput}
+        />
 
-            return (
-              <li key={state + name}>
-                <input
-                  type="radio"
-                  id={state}
-                  name={name}
-                  value={index}
-                  checked={index === locationIndex}
-                  onChange={(e) => {
-                    const i = Number(e.target.value);
-                    setLocationIndex(index);
-                    setLocation(cities[i]);
-                  }}
-                />
-                <label htmlFor={state} className="ml-2">
-                  {name}, {state}
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-        {isInvalidInput && (
-          <span className="input-error">Location is required</span>
-        )}
-        {!data && (
-          <>
-            <button
-              type="submit"
-              className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
-            >
-              {!isLoading ? (
-                "search"
-              ) : (
-                <BeatLoader color="#fff" speedMultiplier={1} />
-              )}
-            </button>
-            <a
-              href="/single-location"
-              className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
-            >
-              back
-            </a>
-          </>
-        )}
-        {data && (
+        <button
+          type="submit"
+          className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
+        >
+          Search
+        </button>
+
+        {!cities ? (
+          <a
+            href="/single-location"
+            className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
+          >
+            Back
+          </a>
+        ) : (
           <a
             href="/single-location"
             className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
           >
-            new search
+            New Search
           </a>
         )}
       </form>

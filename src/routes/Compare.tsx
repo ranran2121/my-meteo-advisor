@@ -13,7 +13,6 @@ export const CompareContext = createContext<Partial<ICompareContext>>({});
 const Compare = () => {
   const [data, setData] = useState<CompareDataType | null>(null);
   const [errorSearch, setErrorSearch] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   let [searchParams] = useSearchParams();
 
@@ -89,8 +88,6 @@ const Compare = () => {
       value={{
         data,
         setData,
-        isLoading,
-        setIsLoading,
         errorSearch,
         setErrorSearch,
         cities1,

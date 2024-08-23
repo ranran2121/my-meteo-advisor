@@ -5,15 +5,8 @@ import { WEATHER_API_BASEURL } from "../../constants";
 import axios from "axios";
 import { invalidInputType } from "../../types/index";
 
-const ZipCodeForm = () => {
-  const {
-    setError,
-    setIsLoading,
-    isLoading,
-    setSearchParams,
-    searchParams,
-    setData,
-  } = useContext(SingleContext);
+/* const ZipCodeForm = () => {
+  const { setIsLoading, isLoading } = useContext(SingleContext);
   const zip = searchParams.get("zipCode");
   const country = searchParams.get("countryCode");
   const [zipCode, setZipCode] = useState(zip ?? "");
@@ -42,10 +35,7 @@ const ZipCodeForm = () => {
         countryCode: country,
         loc: name,
       });
-      setData(forecast.data);
     } catch (e) {
-      setData(null);
-      setError(true);
     } finally {
       setIsLoading(false);
     }
@@ -173,6 +163,10 @@ const ZipCodeForm = () => {
       </form>
     </div>
   );
+}; */
+
+const ZipCodeForm = () => {
+  return <></>;
 };
 
 export default ZipCodeForm;

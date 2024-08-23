@@ -2,13 +2,16 @@ import React, { useState, useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
-import ZipCodeForm from "./ZipCodeForm";
+//import ZipCodeForm from "./ZipCodeForm";
 import Map from "../Map";
 import { hasValidCoordinates } from "../../utils";
+import { useSearchParams } from "react-router-dom";
 
 const Sidebar = () => {
-  const { setData, setSearchParams, searchParams } = useContext(SingleContext);
+  const { weather } = useContext(SingleContext);
+  let [searchParams, setSearchParams] = useSearchParams();
   const zipCode = searchParams.get("zipCode");
+
   const [isZip, setIsZip] = useState(zipCode ? true : false);
 
   const loc = {
@@ -36,7 +39,6 @@ const Sidebar = () => {
               name="selection"
               checked={isZip}
               onChange={() => {
-                setData(null);
                 setSearchParams("");
                 setIsZip(true);
               }}
@@ -56,15 +58,34 @@ const Sidebar = () => {
               name="selection"
               checked={!isZip}
               onChange={() => {
-                setData(null);
                 setSearchParams("");
                 setIsZip(false);
               }}
             />
           </div>
 
-          {isZip ? <ZipCodeForm /> : <LocationForm />}
-          {hasValidCoordinates(loc.lat, loc.lon) && <Map loc1={loc} />}
+          {/* {isZip ? <ZipCodeForm /> : <LocationForm />} */}
+          {!weather && <LocationForm />}
+          {weather && (
+            <div className="text-center">
+              <a
+                href="/single-locations"
+                className="text-color4 font-semibold uppercase my-4 rounded-full p-2 bg-color3 text-center"
+              >
+                new search
+              </a>
+
+              {hasValidCoordinates(loc.lat, loc.lon) && (
+                <Map
+                  loc1={{
+                    ...loc,
+                    lat: Number(loc.lat),
+                    lon: Number(loc.lon),
+                  }}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
