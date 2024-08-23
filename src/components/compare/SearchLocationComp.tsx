@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
 import { invalidInputType } from "../../types/index";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const SearchLocationComp = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,22 +18,12 @@ const SearchLocationComp = () => {
     loc2: "",
   });
 
-  const location = useLocation();
-
   // Effect to synchronize input fields with URL parameters
   useEffect(() => {
     setLocation1(loc1 ?? "");
     setLocation2(loc2 ?? "");
     setInvalidInput({ loc1: "", loc2: "" });
   }, [loc1, loc2]); // Depend on loc1 and loc2 to update input fields when params change
-
-  useEffect(() => {
-    if (location.pathname !== "/compare-locations") {
-      setLocation1("");
-      setLocation2("");
-      setInvalidInput({ loc1: "", loc2: "" });
-    }
-  }, [location.pathname]);
 
   useEffect(() => {
     if (cities1Error) {
