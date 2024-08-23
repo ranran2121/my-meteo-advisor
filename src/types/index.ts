@@ -14,20 +14,16 @@ export interface ISingleContext {
 export interface ICompareContext {
   data: any;
   setData: any;
-  error: any;
-  setError: any;
   isLoading: any;
   setIsLoading: any;
   errorSearch: any;
   setErrorSearch: any;
-  searchParams: any;
-  setSearchParams: any;
-  cities: any;
-  setCities: any;
-  location1: any;
-  setLocation1: any;
-  location2: any;
-  setLocation2: any;
+  cities1: any;
+  cities2: any;
+  weather1: any;
+  weather2: any;
+  cities1Error: any;
+  cities2Error: any;
 }
 
 export interface IFarContext {
@@ -38,8 +34,8 @@ export interface IFarContext {
 }
 
 export type CompareDataType = {
-  forecast1: any;
-  forecast2: any;
+  weather1: any;
+  weather2: any;
 };
 
 export type CitiesType = {

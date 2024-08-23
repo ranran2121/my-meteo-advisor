@@ -4,29 +4,24 @@ import DataColumn from "../DataColumn";
 import SingleBlock from "../SingleBlock";
 import { CompareContext } from "../../routes/Compare";
 import { findIndex } from "../../utils";
-import Error from "../Error";
 import { ForecastListItemType } from "../../types/index";
 
 const DisplayComp = () => {
   const [hasWinner, setHasWinner] = useState("");
-  const { data, error } = useContext(CompareContext);
+  const { data } = useContext(CompareContext);
 
   const i = findIndex();
 
   const handleOnclick = () => {
-    const l1points = givePoints(data.forecast1.list[i]);
-    const l2points = givePoints(data.forecast2.list[i]);
+    const l1points = givePoints(data.weather1.list[i]);
+    const l2points = givePoints(data.weather2.list[i]);
 
     if (l1points >= l2points) {
-      setHasWinner(data.forecast1.city.name);
+      setHasWinner(data.weather1.city.name);
     } else {
-      setHasWinner(data.forecast2.city.name);
+      setHasWinner(data.weather2.city.name);
     }
   };
-
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <div className="text-center flex flex-col items-center mb-4">
@@ -35,11 +30,11 @@ const DisplayComp = () => {
           This is the weather forecast for
         </h2>
         <h1 className="mt-2 text-color2 font-extrabold text-3xl">
-          {data.forecast1.city.name}
+          {data.weather1.city.name}
         </h1>
         <h2 className="text-color1 text-2xl font-bold mt-2">vs</h2>
         <h1 className="mt-2 text-color2 font-extrabold text-3xl">
-          {data.forecast2.city.name}
+          {data.weather2.city.name}
         </h1>
       </div>
 
@@ -53,10 +48,10 @@ const DisplayComp = () => {
             </div>
           </div>
           <div className="basis-1/3">
-            <SingleBlock cityName={data.forecast1.city.name} />
+            <SingleBlock cityName={data.weather1.city.name} />
           </div>
           <div className="basis-1/3">
-            <SingleBlock cityName={data.forecast2.city.name} />
+            <SingleBlock cityName={data.weather2.city.name} />
           </div>
         </div>
 
@@ -65,10 +60,10 @@ const DisplayComp = () => {
             <LegendColumn />
           </div>
           <div className="basis-1/3">
-            <DataColumn data={data.forecast1.list[i]} />
+            <DataColumn data={data.weather1.list[i]} />
           </div>
           <div className="basis-1/3">
-            <DataColumn data={data.forecast2.list[i]} />
+            <DataColumn data={data.weather2.list[i]} />
           </div>
         </div>
       </div>

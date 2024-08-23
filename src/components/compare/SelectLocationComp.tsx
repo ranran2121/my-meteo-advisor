@@ -2,60 +2,37 @@ import React, { useState, useContext } from "react";
 import { CompareContext } from "../../routes/Compare";
 import BeatLoader from "react-spinners/BeatLoader";
 import { CityType, invalidInputType } from "../../types/index";
+import { useSearchParams } from "react-router-dom";
 
-const SelectLocationComp = ({
-  cities1,
-  cities2,
-  location1Index,
-  location2Index,
-  setLocation1Index,
-  setLocation2Index,
-}: {
-  cities1: CityType[] | null;
-  cities2: CityType[] | null;
-  location1Index: number | null;
-  location2Index: number | null;
-  setLocation1Index: (index: number) => void;
-  setLocation2Index: (index: number) => void;
-}) => {
-  const [location1, setLocation1] = useState<Partial<CityType | null>>({});
-  const [location2, setLocation2] = useState<Partial<CityType | null>>({});
-  const [invalidInput, setInvalidInput] = useState<invalidInputType>({
-    loc1: "",
-    loc2: "",
-  });
-  const { data, isLoading, setIsLoading, setSearchParams } =
-    useContext(CompareContext);
+const SelectLocationComp = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let [_, setSearchParams] = useSearchParams();
+  const { data, isLoading, cities1, cities2 } = useContext(CompareContext);
+  const [invalidInput, setInvalidInput] = useState<invalidInputType>({});
+  const [location1Index, setLocation1Index] = useState<number | null>(null);
+  const [location2Index, setLocation2Index] = useState<number | null>(null);
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
 
-    if (!location1 || !location2) {
-      setInvalidInput({
-        loc1: "input is required",
-        loc2: "input is required",
-      });
+    if (location1Index === null) {
+      setInvalidInput({ ...invalidInput, loc1: "selection is required" });
       return;
     }
-    if (!location1) {
-      setInvalidInput({ loc1: "input is required" });
-      return;
-    }
-    if (!location2) {
-      setInvalidInput({ loc2: "input is required" });
+    if (location2Index === null) {
+      setInvalidInput({ ...invalidInput, loc2: "selection is required" });
       return;
     }
 
-    setIsLoading(true);
     setSearchParams({
-      loc1: location1.name,
-      state1: location1.state,
-      lat1: location1.lat,
-      lon1: location1.lon,
-      loc2: location2.name,
-      state2: location2.state,
-      lat2: location2.lat,
-      lon2: location2.lon,
+      loc1: cities1[location1Index].name,
+      state1: cities1[location1Index].state,
+      lat1: cities1[location1Index].lat,
+      lon1: cities1[location1Index].lon,
+      loc2: cities2[location2Index].name,
+      state2: cities2[location2Index].state,
+      lat2: cities2[location2Index].lat,
+      lon2: cities2[location2Index].lon,
     });
   };
 
@@ -72,17 +49,16 @@ const SelectLocationComp = ({
             {cities1?.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
-                <li key={state}>
+                <li key={state + name + index}>
                   <input
                     type="radio"
-                    id={name + state}
+                    id={name + state + index}
                     name={name}
                     value={index}
                     checked={index === location1Index}
                     onChange={(e) => {
-                      setLocation1Index(index);
                       const i = Number(e.target.value);
-                      setLocation1(cities1[i]);
+                      setLocation1Index(i);
                     }}
                   />
                   <label htmlFor={name + state} className="ml-2">
@@ -102,17 +78,16 @@ const SelectLocationComp = ({
             {cities2?.map((city: CityType, index: number) => {
               const { state, name } = city;
               return (
-                <li key={state}>
+                <li key={state + name + index}>
                   <input
                     type="radio"
-                    id={name + state}
+                    id={name + state + index}
                     name={name + state}
                     value={index}
                     checked={index === location2Index}
                     onChange={(e) => {
-                      setLocation2Index(index);
                       const i = Number(e.target.value);
-                      setLocation2(cities2[i]);
+                      setLocation2Index(i);
                     }}
                   />
                   <label htmlFor={name + state} className="ml-2">
@@ -123,7 +98,7 @@ const SelectLocationComp = ({
             })}
           </ul>
           {invalidInput.loc2 && (
-            <span className="input-error">{invalidInput.loc1}</span>
+            <span className="input-error">{invalidInput.loc2}</span>
           )}
         </div>
         {!data && (
@@ -145,14 +120,6 @@ const SelectLocationComp = ({
               back
             </a>
           </>
-        )}
-        {data && (
-          <a
-            href="/compare-locations"
-            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
-          >
-            new search
-          </a>
         )}
       </form>
     </div>

@@ -18,23 +18,23 @@ const Map = ({
   loc1,
   loc2,
 }: {
-  loc1?: { lat: number; lon: number; name: string };
-  loc2?: { lat: number; lon: number; name: string };
+  loc1?: { lat: number | null; lon: number | null; name: string | null };
+  loc2?: { lat: number | null; lon: number | null; name: string | null };
 }) => {
   // Component to fit the map bounds
   const FitMapToBounds = () => {
     const map = useMap();
 
     useEffect(() => {
-      if (loc1 && loc2) {
+      if (loc1?.lat && loc2?.lat && loc1?.lon && loc2?.lon) {
         const bounds = L.latLngBounds(
           [loc1.lat, loc1.lon],
           [loc2.lat, loc2.lon]
         );
         map.fitBounds(bounds, { padding: [50, 50] }); //
-      } else if (loc1) {
+      } else if (loc1?.lat && loc1?.lon) {
         map.setView([loc1.lat, loc1.lon], 13); // Zoom to loc1 if only loc1 is provided
-      } else if (loc2) {
+      } else if (loc2?.lat && loc2?.lon) {
         map.setView([loc2.lat, loc2.lon], 13); // Zoom to loc2 if only loc2 is provided
       }
     }, [map]);
@@ -46,13 +46,13 @@ const Map = ({
     <MapContainer
       center={[51.505, -0.09]}
       zoom={13}
-      style={{ height: "400px", width: "100%" }}
+      style={{ height: "400px", width: "100%", marginTop: "40px" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {loc1 && (
+      {loc1?.lat && loc1?.lon && (
         <Marker position={[loc1.lat, loc1.lon]} icon={defaultIcon}>
           <Popup>
             <span style={{ fontWeight: "bold" }}>{loc1.name}</span> <br /> Lat:{" "}
@@ -61,8 +61,8 @@ const Map = ({
           </Popup>
         </Marker>
       )}
-      {loc2 && (
-        <Marker position={[loc2.lat, loc2.lon]} icon={defaultIcon}>
+      {loc2?.lat && loc2?.lon && (
+        <Marker position={[loc2?.lat, loc2?.lon]} icon={defaultIcon}>
           <Popup>
             <span style={{ fontWeight: "bold" }}>{loc2.name}</span> <br /> Lat:
             {loc2.lat}
