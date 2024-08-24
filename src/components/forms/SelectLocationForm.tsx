@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   children: React.ReactNode;
   hasCities: boolean;
-  onSubmit: any;
+  onSubmit: (e: React.FormEvent) => void;
 };
 
 const SelectLocationForm = ({ children, hasCities, onSubmit }: Props) => {

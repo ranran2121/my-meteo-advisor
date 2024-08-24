@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import { useSearchParams } from "react-router-dom";
+import SingleInput from "../forms/SingleInput";
+import SearchLocationForm from "../forms/SearchLocationForm";
 
 const SearchLocation = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,47 +39,18 @@ const SearchLocation = () => {
 
   return (
     <div className="my-4 text-color4">
-      <form
+      <SearchLocationForm
         onSubmit={handleOnSubmitForm}
-        className="w-full flex flex-col justify-center"
+        hasWeatherError={weatherError}
       >
-        <label
-          className="my-4 text-color4 font-semibold"
-          htmlFor="search-location"
-        >
-          Location
-        </label>
-        <input
-          className="px-4 py-2 rounded-full capitalize text-color1"
-          id="search-location"
-          aria-label="Search location"
-          placeholder="Search"
-          type="search"
+        <SingleInput
+          label="Location"
           value={location}
-          onChange={(e) => {
-            setInvalidInput("");
-            setLocation(e.target.value);
-          }}
+          invalidInput={invalidInput}
+          setInvalidInput={setInvalidInput}
+          setLocation={setLocation}
         />
-        {invalidInput && <span className="input-error">{invalidInput}</span>}
-
-        {!weatherError && (
-          <button
-            type="submit"
-            className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color5"
-          >
-            search
-          </button>
-        )}
-        {weatherError && (
-          <a
-            href="/single-location"
-            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"
-          >
-            New Search
-          </a>
-        )}
-      </form>
+      </SearchLocationForm>
     </div>
   );
 };
