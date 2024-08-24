@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import { useSearchParams } from "react-router-dom";
 import CitiesList from "../forms/CitiesList";
+import SelectLocationForm from "../forms/SelectLocationForm";
 
 const SelectLocation = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -29,40 +30,18 @@ const SelectLocation = () => {
   return (
     <div className="my-4 text-color4 w-full">
       <h2 className="text-xl font-semibold text-color5">Refine your search</h2>
-      <form
+      <SelectLocationForm
         onSubmit={handleOnSubmitForm}
-        className="w-full flex flex-col justify-center"
+        hasCities={!!cities.length}
       >
         <CitiesList
           cities={cities}
           setLocationIndex={setLocationIndex}
           locationIndex={locationIndex}
           invalidInput={invalidInput}
+          name="cities"
         />
-
-        <button
-          type="submit"
-          className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
-        >
-          Search
-        </button>
-
-        {!cities ? (
-          <a
-            href="/single-location"
-            className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
-          >
-            Back
-          </a>
-        ) : (
-          <a
-            href="/single-location"
-            className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
-          >
-            New Search
-          </a>
-        )}
-      </form>
+      </SelectLocationForm>
     </div>
   );
 };

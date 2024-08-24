@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CompareContext } from "../../routes/Compare";
-import BeatLoader from "react-spinners/BeatLoader";
 import { invalidInputType } from "../../types/index";
 import { useSearchParams } from "react-router-dom";
 
@@ -9,7 +8,7 @@ const SearchLocationComp = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const loc1 = searchParams.get("loc1");
   const loc2 = searchParams.get("loc2");
-  const { errorSearch, isLoading, cities1Error, cities2Error } =
+  const { errorSearch, cities1Error, cities2Error } =
     useContext(CompareContext);
   const [location1, setLocation1] = useState<string>(loc1 ?? "");
   const [location2, setLocation2] = useState<string>(loc2 ?? "");
@@ -119,11 +118,7 @@ const SearchLocationComp = () => {
             type="submit"
             className="text-color4 font-semibold uppercase my-4 rounded-full text-center py-2 bg-color3"
           >
-            {!isLoading ? (
-              "search"
-            ) : (
-              <BeatLoader color="#fff" speedMultiplier={1} />
-            )}
+            search
           </button>
         )}
         {errorSearch && (

@@ -6,6 +6,7 @@ type Props = {
   setLocationIndex: (index: number) => void;
   locationIndex: number | null;
   invalidInput: string;
+  name: string;
 };
 
 const CitiesList = ({
@@ -13,6 +14,7 @@ const CitiesList = ({
   setLocationIndex,
   locationIndex,
   invalidInput,
+  name,
 }: Props) => {
   return (
     <>
@@ -25,7 +27,7 @@ const CitiesList = ({
               <input
                 type="radio"
                 id={name + state + index}
-                name="city"
+                name={name}
                 value={index}
                 checked={index === locationIndex}
                 onChange={(e) => {

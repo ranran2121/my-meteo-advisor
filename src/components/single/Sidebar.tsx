@@ -69,7 +69,7 @@ const Sidebar = () => {
           {weather && (
             <div className="text-center">
               <a
-                href="/single-locations"
+                href="/single-location"
                 className="text-color4 font-semibold uppercase my-4 rounded-full p-2 bg-color3 text-center"
               >
                 new search
