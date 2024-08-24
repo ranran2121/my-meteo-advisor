@@ -52,6 +52,7 @@ const SingleLocation = () => {
         cities,
         weather,
         citiesError,
+        weatherError,
       }}
     >
       <div className="flex flex-col md:flex md:flex-row md:h-screen ">

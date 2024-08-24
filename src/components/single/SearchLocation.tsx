@@ -6,7 +6,7 @@ const SearchLocation = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let [searchParams, setSearchParams] = useSearchParams();
   const loc = searchParams.get("loc");
-  const { citiesError } = useContext(SingleContext);
+  const { citiesError, weatherError } = useContext(SingleContext);
   const [location, setLocation] = useState("");
   const [invalidInput, setInvalidInput] = useState("");
 
@@ -23,6 +23,9 @@ const SearchLocation = () => {
 
   const handleOnSubmitForm = async (e: any) => {
     e.preventDefault();
+    if (invalidInput) {
+      return;
+    }
 
     if (!location) {
       setInvalidInput("input is required");
@@ -57,7 +60,8 @@ const SearchLocation = () => {
           }}
         />
         {invalidInput && <span className="input-error">{invalidInput}</span>}
-        {!citiesError && (
+
+        {!weatherError && (
           <button
             type="submit"
             className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color5"
@@ -65,7 +69,7 @@ const SearchLocation = () => {
             search
           </button>
         )}
-        {citiesError && (
+        {weatherError && (
           <a
             href="/single-location"
             className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color3 text-center"

@@ -4,6 +4,7 @@ export interface ISingleContext {
   cities: any;
   weather: any;
   citiesError: any;
+  weatherError: any;
 }
 
 export interface ICompareContext {
