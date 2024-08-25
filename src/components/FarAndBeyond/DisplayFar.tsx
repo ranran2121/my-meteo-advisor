@@ -1,14 +1,9 @@
 import React, { useContext } from "react";
 import { FarContext } from "../../routes/FarAndBeyond";
 import { format } from "date-fns";
-import Error from "../Error";
 
 const DisplayFar = () => {
-  const { data, error } = useContext(FarContext);
-
-  if (error) {
-    return <Error />;
-  }
+  const { data } = useContext(FarContext);
 
   if (data && data.from === "beyond") {
     const { title, url, explanation, copyright, date, media_type } = data.data;

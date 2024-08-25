@@ -1,70 +1,55 @@
-import React, { useContext, useState, useEffect } from "react";
-import MarsForm from "./MarsForm";
-import NasaForm from "./NasaForm";
+import React, { useContext } from "react";
 import "../../style/auroral.css";
 import { FarContext } from "../../routes/FarAndBeyond";
-import { useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const SidebarFar = () => {
-  const { setData } = useContext(FarContext);
-  let [searchParams, setSearchParams] = useSearchParams();
-
-  const nasa = searchParams.get("day");
-  const [isNasa, setIsNasa] = useState(nasa ? true : false);
-
-  useEffect(() => {
-    if (nasa) {
-      setIsNasa(true);
-    } else {
-      setIsNasa(false);
-    }
-  }, [nasa, searchParams]);
-
+const SidebarFar = ({ handleClick }: { handleClick: () => void }) => {
+  const { data } = useContext(FarContext);
   return (
     <div className="container md:rounded-tr-lg h-auto md:h-full">
       <div className="auroral-northern "></div>
-      <div className="sidebar pt-8">
+      <div className="sidebar">
         <div className="w-full px-8 mt-6">
-          <div className="flex flex-row my-2 justify-between">
-            <label htmlFor="mars" className="text-xl font-semibold text-color3">
-              Look at Mars
-            </label>
-            <input
-              className="mr-6"
-              type="radio"
-              id="mars"
-              name="selection"
-              checked={!isNasa}
-              onChange={() => {
-                setData(null);
-                setSearchParams("");
-                setIsNasa(false);
-              }}
-            />
-          </div>
-
-          <div className="flex flex-row my-2 justify-between">
-            <label
-              htmlFor="nasa"
-              className="text-xl font-semibold text-color5 mr-2"
-            >
-              Look at beyond
-            </label>
-            <input
-              className="mr-6"
-              type="radio"
-              id="nasa"
-              name="selection"
-              checked={isNasa}
-              onChange={() => {
-                setData(null);
-                setSearchParams("");
-                setIsNasa(true);
-              }}
-            />
-          </div>
+          {!data && (
+            <>
+              <h3 className="text-color4 font-semibold text-2xl text-center">
+                Will you be lucky in having a glimpse of the weather on{" "}
+                <span className="text-3xl text-color2 italic underline underline-offset-4">
+                  Mars
+                </span>{" "}
+                ?
+              </h3>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  onClick={handleClick}
+                  className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+                >
+                  good luck
+                </button>
+              </div>
+            </>
+          )}
+          {data && data.from === "beyond" && (
+            <>
+              <h4 className="text-color4 font-semibold text-2xl text-center">
+                It looks like InSight lander is not transmitting data... but we
+                can delight you with the image of the day by{" "}
+                <span className="text-3xl text-color2 italic underline underline-offset-4">
+                  Nasa
+                </span>
+              </h4>
+              <div className="flex justify-center">
+                <NavLink
+                  to={"/"}
+                  className="text-color4 font-semibold uppercase my-4 rounded-full px-4 py-2 bg-color3"
+                >
+                  home
+                </NavLink>
+              </div>
+            </>
+          )}
         </div>
-        {isNasa ? <NasaForm /> : <MarsForm />}
       </div>
     </div>
   );

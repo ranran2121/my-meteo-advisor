@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { SingleContext } from "../../routes/SingleLocation";
 import "../../style/auroral.css";
 import LocationForm from "./LocationForm";
-//import ZipCodeForm from "./ZipCodeForm";
 import Map from "../Map";
 import { hasValidCoordinates } from "../../utils";
 import { useSearchParams } from "react-router-dom";
