@@ -9,9 +9,9 @@ const SidebarFar = ({ handleClick }: { handleClick: () => void }) => {
     <div className="container md:rounded-tr-lg h-auto md:h-full">
       <div className="auroral-northern "></div>
       <div className="sidebar">
-        <div className="w-full px-8 mt-6">
+        <div className="w-full px-8 my-6">
           {!data && (
-            <>
+            <div className="my-4 text-color4">
               <h3 className="text-color4 font-semibold text-2xl text-center">
                 Will you be lucky in having a glimpse of the weather on{" "}
                 <span className="text-3xl text-color2 italic underline underline-offset-4">
@@ -28,10 +28,10 @@ const SidebarFar = ({ handleClick }: { handleClick: () => void }) => {
                   good luck
                 </button>
               </div>
-            </>
+            </div>
           )}
           {data && data.from === "beyond" && (
-            <>
+            <div className="my-4 text-color4">
               <h4 className="text-color4 font-semibold text-2xl text-center">
                 It looks like InSight lander is not transmitting data... but we
                 can delight you with the image of the day by{" "}
@@ -47,7 +47,7 @@ const SidebarFar = ({ handleClick }: { handleClick: () => void }) => {
                   home
                 </NavLink>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

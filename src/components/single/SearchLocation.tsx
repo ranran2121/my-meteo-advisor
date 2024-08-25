@@ -39,6 +39,7 @@ const SearchLocation = () => {
 
   return (
     <div className="my-4 text-color4">
+      <h2 className="text-xl font-semibold">Search by Location</h2>
       <SearchLocationForm
         onSubmit={handleOnSubmitForm}
         hasWeatherError={weatherError}

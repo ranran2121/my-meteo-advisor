@@ -12,7 +12,7 @@ function Navbar() {
               isActive ? "active" : isPending ? "pending" : ""
             }
           >
-            One and only
+            Single
           </NavLink>
         </li>
         <li>

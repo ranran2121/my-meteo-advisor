@@ -6,7 +6,7 @@ import SelectLocation from "./SelectLocation";
 const LocationForm = () => {
   const { cities } = useContext(SingleContext);
 
-  return <>{cities ? <SelectLocation /> : <SearchLocation />}</>;
+  return cities ? <SelectLocation /> : <SearchLocation />;
 };
 
 export default LocationForm;

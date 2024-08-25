@@ -3,7 +3,7 @@ import { SunIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {
   return (
-    <footer className="h-10 bg-color1 text-color4 text-center">
+    <footer className="h-8 bg-color1 text-color4 text-center text-sm pt-1">
       Do you like the website?
       <a
         href="mailto:m.hacke@example.com"

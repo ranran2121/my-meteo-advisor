@@ -5,7 +5,7 @@ const Message = () => {
   return (
     <div className="text-center flex flex-col items-center">
       <div className="py-4 px-4 text-xl md:text-3xl">
-        <h2 className="text-color1  font-bold">Start your search</h2>
+        <h2 className="text-color1  font-bold">Begin your search</h2>
         <h2 className="text-color1 font-bold">for</h2>
         <h2 className="text-color1 font-bold">your favourite location</h2>
       </div>
