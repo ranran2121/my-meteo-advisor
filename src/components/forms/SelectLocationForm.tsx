@@ -18,21 +18,12 @@ const SelectLocationForm = ({ children, hasCities, onSubmit }: Props) => {
         Search
       </button>
 
-      {!hasCities ? (
-        <a
-          href="/single-location"
-          className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
-        >
-          Back
-        </a>
-      ) : (
-        <a
-          href="/single-location"
-          className="text-color4 font-semibold uppercase my-4 rounded-full py-2 bg-color5 text-center"
-        >
-          New Search
-        </a>
-      )}
+      <a
+        href="/single-location"
+        className="text-color4 font-semibold uppercase my-2 rounded-full py-2 bg-color5 text-center"
+      >
+        Back
+      </a>
     </form>
   );
 };
